@@ -26,6 +26,7 @@ import MapView from "@/pages/MapView";
 import ClientPortal from "@/pages/ClientPortal";
 import Finance from "@/pages/Finance";
 import Reports from "@/pages/Reports";
+import Booking from "@/pages/Booking";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -69,6 +70,7 @@ const AuthenticatedApp = () => {
           <Route path="/clients" element={<ClientPortal />} />
           <Route path="/finance" element={<Finance />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/booking" element={<Booking />} />
         </Route>
       </Route>
 

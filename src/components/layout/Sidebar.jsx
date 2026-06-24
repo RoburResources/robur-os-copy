@@ -12,6 +12,7 @@ import {
   Bell,
   LogOut,
   Activity,
+  Calendar,
 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
@@ -32,6 +33,7 @@ const navSections = [
       { label: "Clients", icon: Users, path: "/clients" },
       { label: "Finance", icon: BarChart3, path: "/finance" },
       { label: "Reports", icon: FileText, path: "/reports" },
+      { label: "Bookings", icon: Calendar, path: "/booking" },
     ],
   },
 ];
