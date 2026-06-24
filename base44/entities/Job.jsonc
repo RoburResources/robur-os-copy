@@ -1,0 +1,68 @@
+{
+  "name": "Job",
+  "type": "object",
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "client": {
+      "type": "string"
+    },
+    "job_type": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "created",
+        "scheduled",
+        "assigned",
+        "dispatched",
+        "en_route",
+        "completed"
+      ],
+      "default": "created"
+    },
+    "site_address": {
+      "type": "string"
+    },
+    "contact_name": {
+      "type": "string"
+    },
+    "contact_phone": {
+      "type": "string"
+    },
+    "scheduled_time": {
+      "type": "string"
+    },
+    "vehicle_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "high",
+        "normal",
+        "low"
+      ],
+      "default": "normal"
+    }
+  },
+  "required": [
+    "job_id",
+    "title",
+    "client"
+  ]
+}

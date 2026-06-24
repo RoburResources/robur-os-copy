@@ -27,6 +27,7 @@ import ClientPortal from "@/pages/ClientPortal";
 import Finance from "@/pages/Finance";
 import Reports from "@/pages/Reports";
 import Booking from "@/pages/Booking";
+import Documents from "@/pages/Documents";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -71,6 +72,7 @@ const AuthenticatedApp = () => {
           <Route path="/finance" element={<Finance />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/booking" element={<Booking />} />
+          <Route path="/documents" element={<Documents />} />
         </Route>
       </Route>
 

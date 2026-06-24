@@ -14,6 +14,7 @@ import {
   Activity,
   Calendar,
   Trash2,
+  FileStack,
 } from "lucide-react";
 import { useState } from "react";
 import { base44 } from "@/api/base44Client";
@@ -47,6 +48,7 @@ const navSections = [
       { label: "Finance", icon: BarChart3, path: "/finance" },
       { label: "Reports", icon: FileText, path: "/reports" },
       { label: "Bookings", icon: Calendar, path: "/booking" },
+      { label: "Documents", icon: FileStack, path: "/documents" },
     ],
   },
 ];

@@ -1,0 +1,58 @@
+{
+  "name": "Docket",
+  "type": "object",
+  "properties": {
+    "docket_no": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "time_in": {
+      "type": "string"
+    },
+    "time_out": {
+      "type": "string"
+    },
+    "vehicle": {
+      "type": "string"
+    },
+    "driver": {
+      "type": "string"
+    },
+    "material": {
+      "type": "string"
+    },
+    "gross_weight": {
+      "type": "number"
+    },
+    "tare_weight": {
+      "type": "number"
+    },
+    "net_weight": {
+      "type": "number"
+    },
+    "site": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "extracted",
+        "validated",
+        "generated",
+        "archived"
+      ],
+      "default": "pending"
+    }
+  },
+  "required": [
+    "docket_no",
+    "source"
+  ]
+}

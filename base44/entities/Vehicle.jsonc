@@ -1,0 +1,58 @@
+{
+  "name": "Vehicle",
+  "type": "object",
+  "properties": {
+    "vehicle_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "idle",
+        "maintenance"
+      ],
+      "default": "idle"
+    },
+    "driver": {
+      "type": "string"
+    },
+    "odometer": {
+      "type": "number"
+    },
+    "fuel_pct": {
+      "type": "number"
+    },
+    "adblue_pct": {
+      "type": "number"
+    },
+    "utilisation_pct": {
+      "type": "number"
+    },
+    "health_pct": {
+      "type": "number"
+    },
+    "next_service": {
+      "type": "string"
+    },
+    "rego": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "vehicle_id",
+    "type"
+  ]
+}
