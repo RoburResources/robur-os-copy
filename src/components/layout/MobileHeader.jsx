@@ -3,15 +3,17 @@ import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const routeTitles = {
-  "/": "Driver",
-  "/operations": "Ops Centre",
+  "/": "Executive",
+  "/operations": "Operations",
+  "/driver": "Driver",
   "/fleet": "Fleet",
   "/jobs": "Jobs",
-  "/map": "Live Map",
   "/clients": "Clients",
-  "/finance": "Finance",
-  "/reports": "Reports",
-  "/booking": "Booking",
+  "/finance": "Payments",
+  "/documents": "Documents",
+  "/dmt": "DMT Workflow",
+  "/mgt": "MGT Workflow",
+  "/dss": "DSS Workflow",
   "/settings": "Settings",
   "/notifications": "Notifications",
 };

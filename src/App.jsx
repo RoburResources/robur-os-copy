@@ -28,6 +28,10 @@ import Finance from "@/pages/Finance";
 import Reports from "@/pages/Reports";
 import Booking from "@/pages/Booking";
 import Documents from "@/pages/Documents";
+import ExecutiveDashboard from "@/pages/ExecutiveDashboard";
+import DMTWorkflow from "@/pages/DMTWorkflow";
+import MGTWorkflow from "@/pages/MGTWorkflow";
+import DSSWorkflow from "@/pages/DSSWorkflow";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -63,8 +67,9 @@ const AuthenticatedApp = () => {
 
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<ExecutiveDashboard />} />
           <Route path="/operations" element={<StaffDashboard />} />
+          <Route path="/driver" element={<Dashboard />} />
           <Route path="/fleet" element={<Fleet />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/map" element={<MapView />} />
@@ -73,6 +78,9 @@ const AuthenticatedApp = () => {
           <Route path="/reports" element={<Reports />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/documents" element={<Documents />} />
+          <Route path="/dmt" element={<DMTWorkflow />} />
+          <Route path="/mgt" element={<MGTWorkflow />} />
+          <Route path="/dss" element={<DSSWorkflow />} />
         </Route>
       </Route>
 

@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, Package, MapPin, Users } from "lucide-react";
+import { Gauge, Package, Truck, FileStack, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const tabs = [
-  { label: "Dashboard", icon: LayoutDashboard, path: "/" },
+  { label: "Executive", icon: Gauge, path: "/" },
   { label: "Jobs", icon: Package, path: "/jobs" },
-  { label: "Map", icon: MapPin, path: "/map" },
+  { label: "Fleet", icon: Truck, path: "/fleet" },
+  { label: "Docs", icon: FileStack, path: "/documents" },
   { label: "Clients", icon: Users, path: "/clients" },
 ];
 

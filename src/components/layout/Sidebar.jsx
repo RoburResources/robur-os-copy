@@ -1,20 +1,21 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
+  Gauge,
+  Activity,
   LayoutDashboard,
   Truck,
+  Package,
+  FileStack,
   Users,
-  FileText,
-  MapPin,
+  CreditCard,
+  ClipboardList,
+  FileCheck,
   BarChart3,
   Settings,
-  Package,
   Bell,
   LogOut,
-  Activity,
-  Calendar,
   Trash2,
-  FileStack,
 } from "lucide-react";
 import { useState } from "react";
 import { base44 } from "@/api/base44Client";
@@ -32,23 +33,34 @@ import {
 
 const navSections = [
   {
-    label: "Operations",
+    label: "Overview",
     items: [
-      { label: "Driver", icon: LayoutDashboard, path: "/" },
-      { label: "Ops Centre", icon: Activity, path: "/operations" },
-      { label: "Fleet", icon: Truck, path: "/fleet" },
-      { label: "Jobs", icon: Package, path: "/jobs" },
-      { label: "Map", icon: MapPin, path: "/map" },
+      { label: "Executive", icon: Gauge, path: "/" },
+      { label: "Operations", icon: Activity, path: "/operations" },
+      { label: "Driver", icon: LayoutDashboard, path: "/driver" },
     ],
   },
   {
-    label: "Management",
+    label: "Operations",
+    items: [
+      { label: "Fleet", icon: Truck, path: "/fleet" },
+      { label: "Jobs", icon: Package, path: "/jobs" },
+      { label: "Documents", icon: FileStack, path: "/documents" },
+    ],
+  },
+  {
+    label: "Business",
     items: [
       { label: "Clients", icon: Users, path: "/clients" },
-      { label: "Finance", icon: BarChart3, path: "/finance" },
-      { label: "Reports", icon: FileText, path: "/reports" },
-      { label: "Bookings", icon: Calendar, path: "/booking" },
-      { label: "Documents", icon: FileStack, path: "/documents" },
+      { label: "Payments", icon: CreditCard, path: "/finance" },
+    ],
+  },
+  {
+    label: "Workflows",
+    items: [
+      { label: "DMT", icon: ClipboardList, path: "/dmt" },
+      { label: "MGT", icon: FileCheck, path: "/mgt" },
+      { label: "DSS", icon: BarChart3, path: "/dss" },
     ],
   },
 ];

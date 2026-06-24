@@ -3,6 +3,7 @@ import MetricCard from "@/components/ui/MetricCard";
 import RevenueChart from "@/components/finance/RevenueChart";
 import InvoiceList from "@/components/finance/InvoiceList";
 import SupplierPayments from "@/components/finance/SupplierPayments";
+import WorkflowFlow from "@/components/ui/WorkflowFlow";
 import { motion } from "framer-motion";
 import { DollarSign, TrendingUp, Clock, CreditCard } from "lucide-react";
 
@@ -14,7 +15,8 @@ const fadeIn = {
 export default function Finance() {
   return (
     <div className="max-w-7xl mx-auto">
-      <TopBar title="Finance" subtitle="Financial overview · June 2026" />
+      <TopBar title="Payment Management" subtitle="Financial overview · June 2026" />
+      <WorkflowFlow steps={["Invoice", "Submit", "Review", "Pay", "Reconcile", "End"]} currentStep={2} />
 
       {/* Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
