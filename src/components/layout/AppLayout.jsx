@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import BottomTabs from "./BottomTabs";
+import MobileHeader from "./MobileHeader";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function AppLayout() {
+  const isMobile = useIsMobile();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100/50">
       {/* Ambient background shapes */}
@@ -11,10 +17,30 @@ export default function AppLayout() {
         <div className="absolute bottom-0 right-1/4 h-40 w-40 rounded-full bg-robur-yellow/3 blur-2xl" />
       </div>
 
-      <Sidebar />
-      <main className="ml-64 min-h-screen p-8">
-        <Outlet />
-      </main>
+      {isMobile ? (
+        <>
+          <MobileHeader />
+          <main
+            className="min-h-screen"
+            style={{
+              paddingTop: "calc(3.5rem + env(safe-area-inset-top))",
+              paddingBottom: "calc(4.5rem + env(safe-area-inset-bottom))",
+            }}
+          >
+            <div className="p-4">
+              <Outlet />
+            </div>
+          </main>
+          <BottomTabs />
+        </>
+      ) : (
+        <>
+          <Sidebar />
+          <main className="ml-64 min-h-screen p-8">
+            <Outlet />
+          </main>
+        </>
+      )}
     </div>
   );
 }

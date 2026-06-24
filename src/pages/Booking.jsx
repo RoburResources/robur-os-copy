@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
@@ -48,6 +49,7 @@ export default function Booking() {
   const [preferredDate, setPreferredDate] = useState("");
   const [saving, setSaving] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const navigate = useNavigate();
 
   const handleSearchAddress = async () => {
     if (!address.trim()) return;
@@ -138,7 +140,17 @@ export default function Booking() {
               {notes && <SummaryRow label="Notes" value={notes} />}
             </div>
             <button
-              onClick={() => (window.location.href = "/booking")}
+              onClick={() => {
+                setStep(1);
+                setService("");
+                setAction("");
+                setAddress("");
+                setNotes("");
+                setContactName("");
+                setContactPhone("");
+                setPreferredDate("");
+                setConfirmed(false);
+              }}
               className="w-full rounded-xl bg-robur-charcoal py-3 text-sm font-semibold text-white hover:bg-robur-charcoal/90 transition-colors"
             >
               New Booking
@@ -156,7 +168,7 @@ export default function Booking() {
         <div className="flex items-center gap-3">
           <button
             onClick={() =>
-              step > 1 ? setStep(step - 1) : (window.location.href = "/")
+              step > 1 ? setStep(step - 1) : navigate(-1)
             }
             className="flex items-center gap-1 text-sm font-medium text-robur-steel hover:text-robur-charcoal transition-colors"
           >

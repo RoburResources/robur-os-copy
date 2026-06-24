@@ -13,8 +13,21 @@ import {
   LogOut,
   Activity,
   Calendar,
+  Trash2,
 } from "lucide-react";
+import { useState } from "react";
 import { base44 } from "@/api/base44Client";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
 const navSections = [
   {
@@ -40,6 +53,18 @@ const navSections = [
 
 export default function Sidebar() {
   const location = useLocation();
+  const [deleting, setDeleting] = useState(false);
+
+  const handleDeleteAccount = async () => {
+    setDeleting(true);
+    try {
+      await base44.auth.deleteAccount?.();
+      base44.auth.logout();
+    } catch (err) {
+      console.error(err);
+      setDeleting(false);
+    }
+  };
 
   return (
     <aside className="glass-sidebar fixed left-0 top-0 z-40 flex h-screen w-64 flex-col">
@@ -107,6 +132,33 @@ export default function Sidebar() {
           <Settings className="h-4 w-4" strokeWidth={1.5} />
           <span>Settings</span>
         </Link>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-robur-light/40 hover:bg-white/5 hover:text-red-400 transition-all">
+              <Trash2 className="h-4 w-4" strokeWidth={1.5} />
+              <span>Delete Account</span>
+            </button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Account?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action is permanent and cannot be undone. All your data
+                will be permanently removed from Robur Resources.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleDeleteAccount}
+                disabled={deleting}
+                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              >
+                {deleting ? "Deleting..." : "Delete"}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
         <button
           onClick={() => base44.auth.logout()}
           className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-robur-light/40 hover:bg-white/5 hover:text-red-400 transition-all"
