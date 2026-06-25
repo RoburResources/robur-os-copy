@@ -58,6 +58,9 @@
         "low"
       ],
       "default": "normal"
+    },
+    "calendar_event_id": {
+      "type": "string"
     }
   },
   "required": [
