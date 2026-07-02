@@ -15,14 +15,14 @@ export default function AppLayout() {
       {/* Blurred background image to test glass card effect */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <img
-          src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/059ef1d21_image.png"
+          src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/28c02e431_hf_20260618_020723_d020fbd3-2253-491d-98f6-4484819223f3.png"
           alt=""
           className="absolute inset-0 w-full h-full object-cover scale-105"
-          style={{ filter: "blur(32px) saturate(1.15) brightness(1.05)" }}
+          style={{ filter: "blur(32px) grayscale(1) brightness(1.1)" }}
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 20%, rgba(255,210,110,0.18) 45%, rgba(255,190,80,0.12) 60%, rgba(120,118,115,0.20) 85%, rgba(90,90,90,0.28) 100%)" }}
+          style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.58) 30%, rgba(255,255,255,0.5) 60%, rgba(245,245,245,0.55) 100%)" }}
         />
       </div>
 
