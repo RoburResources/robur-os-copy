@@ -32,30 +32,30 @@ const CLOUD_BLOBS = [
 function RealisticCloud({ variant = 0, opacity = 0.92, dark = false }) {
   const uid = useId().replace(/:/g, "");
   const blobs = CLOUD_BLOBS[variant % CLOUD_BLOBS.length];
-  const filterId = `cf-${uid}`;
-  const gradId = `cg-${uid}`;
+  const blurId = `b-${uid}`;
+  const gradId = `g-${uid}`;
 
   const topColor = dark ? "#90A4AE" : "#FFFFFF";
   const midColor = dark ? "#78909C" : "#ECEFF1";
   const bottomColor = dark ? "#546E7A" : "#B0C4DE";
 
   return (
-    <svg width="200" height="76" viewBox="0 0 200 76" style={{ overflow: "visible" }}>
+    <svg width="200" height="90" viewBox="0 0 200 90" style={{ overflow: "visible" }}>
       <defs>
-        <filter id={filterId} x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-          <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8" />
+        {/* Layered blur — soft fluffy edges, no hard threshold */}
+        <filter id={blurId} x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
         </filter>
-        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+        <radialGradient id={gradId} cx="50%" cy="35%" r="65%">
           <stop offset="0%" stopColor={topColor} stopOpacity={opacity} />
-          <stop offset="55%" stopColor={midColor} stopOpacity={opacity * 0.95} />
-          <stop offset="100%" stopColor={bottomColor} stopOpacity={opacity * 0.7} />
-        </linearGradient>
+          <stop offset="50%" stopColor={midColor} stopOpacity={opacity * 0.9} />
+          <stop offset="100%" stopColor={bottomColor} stopOpacity={opacity * 0.45} />
+        </radialGradient>
       </defs>
       {/* Soft ground shadow */}
-      <ellipse cx="100" cy="72" rx="65" ry="5" fill="#000" opacity="0.06" />
-      {/* Cloud body — circles merged by goo filter into organic volumetric shape */}
-      <g filter={`url(#${filterId})`}>
+      <ellipse cx="100" cy="80" rx="60" ry="4" fill="#000" opacity="0.05" />
+      {/* Cloud body — overlapping circles with soft blur produce fluffy seamless edges */}
+      <g filter={`url(#${blurId})`}>
         {blobs.map((b, i) => (
           <circle key={i} cx={b.cx} cy={b.cy} r={b.r} fill={`url(#${gradId})`} />
         ))}
