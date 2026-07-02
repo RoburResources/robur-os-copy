@@ -1,66 +1,55 @@
-import { useId } from "react";
 import { motion } from "framer-motion";
 
-// Cloud blob clusters — overlapping circles merged into organic shapes via SVG goo filter
-const CLOUD_BLOBS = [
+// Cloud puff definitions — each cloud is a set of radial-gradient "puffs" that
+// blend together seamlessly via CSS (no SVG circles, no hard edges, no shadow).
+// Each puff: { x, y, size } as percentages within the cloud container.
+const CLOUD_PUFFS = [
   // Large cumulus
   [
-    { cx: 40, cy: 52, r: 20 }, { cx: 70, cy: 44, r: 28 }, { cx: 105, cy: 42, r: 30 },
-    { cx: 140, cy: 48, r: 24 }, { cx: 165, cy: 54, r: 18 }, { cx: 56, cy: 60, r: 16 },
-    { cx: 88, cy: 62, r: 18 }, { cx: 122, cy: 60, r: 16 },
+    { x: 18, y: 68, s: 26 }, { x: 32, y: 55, s: 36 }, { x: 50, y: 52, s: 40 },
+    { x: 68, y: 58, s: 32 }, { x: 82, y: 70, s: 24 }, { x: 26, y: 78, s: 22 },
+    { x: 42, y: 80, s: 24 }, { x: 60, y: 80, s: 22 },
   ],
   // Medium cloud
   [
-    { cx: 28, cy: 48, r: 16 }, { cx: 58, cy: 40, r: 24 }, { cx: 92, cy: 38, r: 26 },
-    { cx: 122, cy: 44, r: 20 }, { cx: 46, cy: 54, r: 14 }, { cx: 78, cy: 56, r: 16 },
-    { cx: 108, cy: 54, r: 14 },
+    { x: 20, y: 62, s: 22 }, { x: 38, y: 52, s: 32 }, { x: 58, y: 48, s: 34 },
+    { x: 78, y: 54, s: 28 }, { x: 30, y: 74, s: 20 }, { x: 50, y: 76, s: 22 },
+    { x: 70, y: 74, s: 20 },
   ],
   // Small cloud
   [
-    { cx: 24, cy: 46, r: 14 }, { cx: 50, cy: 38, r: 20 }, { cx: 80, cy: 36, r: 22 },
-    { cx: 106, cy: 42, r: 18 }, { cx: 38, cy: 52, r: 12 }, { cx: 68, cy: 53, r: 14 },
+    { x: 18, y: 60, s: 20 }, { x: 36, y: 48, s: 28 }, { x: 56, y: 46, s: 30 },
+    { x: 74, y: 54, s: 24 }, { x: 28, y: 72, s: 18 }, { x: 50, y: 74, s: 20 },
   ],
   // Wide spread cloud
   [
-    { cx: 18, cy: 50, r: 16 }, { cx: 48, cy: 40, r: 26 }, { cx: 84, cy: 38, r: 30 },
-    { cx: 120, cy: 40, r: 28 }, { cx: 154, cy: 46, r: 22 }, { cx: 176, cy: 52, r: 16 },
-    { cx: 36, cy: 56, r: 14 }, { cx: 70, cy: 58, r: 16 }, { cx: 104, cy: 58, r: 16 },
-    { cx: 138, cy: 56, r: 14 },
+    { x: 10, y: 64, s: 22 }, { x: 26, y: 52, s: 34 }, { x: 44, y: 48, s: 40 },
+    { x: 62, y: 50, s: 38 }, { x: 80, y: 56, s: 30 }, { x: 92, y: 66, s: 22 },
+    { x: 20, y: 76, s: 20 }, { x: 38, y: 80, s: 22 }, { x: 56, y: 80, s: 22 },
+    { x: 74, y: 78, s: 20 },
   ],
 ];
 
-function RealisticCloud({ variant = 0, opacity = 0.92, dark = false }) {
-  const uid = useId().replace(/:/g, "");
-  const blobs = CLOUD_BLOBS[variant % CLOUD_BLOBS.length];
-  const blurId = `b-${uid}`;
-  const gradId = `g-${uid}`;
+function RealisticCloud({ variant = 0, opacity = 0.9, dark = false }) {
+  const puffs = CLOUD_PUFFS[variant % CLOUD_PUFFS.length];
+  const color = dark ? "180,195,210" : "255,255,255";
 
-  const topColor = dark ? "#90A4AE" : "#FFFFFF";
-  const midColor = dark ? "#78909C" : "#ECEFF1";
-  const bottomColor = dark ? "#546E7A" : "#B0C4DE";
+  // Build a multi-layer radial-gradient background — each puff is a gradient
+  // that fades to fully transparent, so overlapping puffs blend seamlessly
+  // with no visible borders or hard edges.
+  const gradients = puffs.map((p) =>
+    `radial-gradient(circle at ${p.x}% ${p.y}%, rgba(${color},${opacity}) 0%, rgba(${color},${opacity * 0.75}) ${p.s * 0.6}%, rgba(${color},0) ${p.s}%)`
+  ).join(", ");
 
   return (
-    <svg width="200" height="90" viewBox="0 0 200 90" style={{ overflow: "visible" }}>
-      <defs>
-        {/* Layered blur — soft fluffy edges, no hard threshold */}
-        <filter id={blurId} x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-        </filter>
-        <radialGradient id={gradId} cx="50%" cy="35%" r="65%">
-          <stop offset="0%" stopColor={topColor} stopOpacity={opacity} />
-          <stop offset="50%" stopColor={midColor} stopOpacity={opacity * 0.9} />
-          <stop offset="100%" stopColor={bottomColor} stopOpacity={opacity * 0.45} />
-        </radialGradient>
-      </defs>
-      {/* Soft ground shadow */}
-      <ellipse cx="100" cy="80" rx="60" ry="4" fill="#000" opacity="0.05" />
-      {/* Cloud body — overlapping circles with soft blur produce fluffy seamless edges */}
-      <g filter={`url(#${blurId})`}>
-        {blobs.map((b, i) => (
-          <circle key={i} cx={b.cx} cy={b.cy} r={b.r} fill={`url(#${gradId})`} />
-        ))}
-      </g>
-    </svg>
+    <div
+      style={{
+        width: 200,
+        height: 90,
+        backgroundImage: gradients,
+        backgroundRepeat: "no-repeat",
+      }}
+    />
   );
 }
 
