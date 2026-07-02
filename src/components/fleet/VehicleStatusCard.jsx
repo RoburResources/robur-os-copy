@@ -64,8 +64,9 @@ function EditableImage() {
           style={{
             transform: `translate(${pos.x}px, ${pos.y}px) scale(${zoom})`,
             transition: dragging ? "none" : "transform 0.1s ease-out",
-            maskImage: 'radial-gradient(ellipse 82% 95% at 50% 45%, black 50%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 82% 95% at 50% 45%, black 50%, transparent 100%)',
+            maskImage: 'radial-gradient(ellipse 100% 100% at 50% 50%, black 5%, rgba(0,0,0,0.7) 35%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 100% 100% at 50% 50%, black 5%, rgba(0,0,0,0.7) 35%, transparent 80%)',
+            filter: 'blur(1px)',
           }}
         />
       </div>
@@ -102,7 +103,7 @@ function EditableImage() {
 
 export default function VehicleStatusCard() {
   return (
-    <div className="rounded-2xl overflow-hidden bg-[#F9F7F5] shadow-[0_4px_16px_rgba(0,0,0,0.18),0_12px_40px_rgba(0,0,0,0.12)]">
+    <div className="rounded-2xl overflow-hidden glass-2">
       {/* Header */}
       <div className="flex items-start justify-between px-5 pt-5">
         <div>
@@ -126,7 +127,7 @@ export default function VehicleStatusCard() {
             </div>
           ))}
         </div>
-        <div className="flex items-center gap-2 rounded-lg bg-[#F0EBE7] px-3 py-2">
+        <div className="flex items-center gap-2 rounded-lg bg-robur-charcoal/[0.03] px-3 py-2">
           <Wrench className="h-4 w-4 text-robur-charcoal" strokeWidth={1.5} />
           <div>
             <p className="text-[10px] text-robur-steel">Next Service</p>
@@ -137,11 +138,11 @@ export default function VehicleStatusCard() {
 
       {/* Bottom data modules */}
       <div className="grid grid-cols-2 gap-3 px-5 pb-5 pt-3">
-        <div className="rounded-xl bg-[#F0EBE7] p-3 space-y-3">
+        <div className="rounded-xl bg-robur-charcoal/[0.03] p-3 space-y-3">
           <ProgressBar label="Fuel" percent={62} />
           <ProgressBar label="AdBlue" percent={62} />
         </div>
-        <div className="rounded-xl bg-[#F0EBE7] p-3 flex flex-col justify-between">
+        <div className="rounded-xl bg-robur-charcoal/[0.03] p-3 flex flex-col justify-between">
           <div>
             <p className="text-[10px] text-robur-steel mb-1">Odometer</p>
             <div className="flex items-center gap-1.5">

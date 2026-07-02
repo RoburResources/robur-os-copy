@@ -93,17 +93,15 @@ export default function ExecutiveDashboard() {
     alerts: {
       span: "col-span-12 lg:col-span-4",
       node: (
-        <div className="rounded-2xl bg-robur-yellow/10 p-5 h-full border border-robur-yellow/20">
-          <div className="flex items-center gap-2 mb-4 rounded-lg bg-robur-yellow/20 px-3 py-2">
+        <GlassCard level={2} className="p-5 h-full">
+          <div className="flex items-center gap-2 mb-4">
             <AlertTriangle className="h-4 w-4 text-robur-yellow" />
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-charcoal">Priority Alerts</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Priority Alerts</h3>
           </div>
           <div className="space-y-2">
             {alerts.map((a, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-lg bg-robur-yellow/[0.06] px-3 py-2">
-                <div className={cn("mt-1 h-2 w-2 rounded-full shrink-0",
-                  a.severity === "critical" ? "bg-red-500" : a.severity === "warning" ? "bg-robur-yellow" : "bg-emerald-500"
-                )} />
+              <div key={i} className="flex items-start gap-3 rounded-lg bg-robur-charcoal/[0.03] px-3 py-2">
+                <div className="mt-1 h-2 w-2 rounded-full shrink-0 bg-robur-yellow shadow-[0_0_8px_rgba(255,196,0,0.6)]" />
                 <div className="flex-1">
                   <p className="text-xs font-medium text-robur-charcoal">{a.message}</p>
                   <p className="text-[10px] text-robur-steel">{a.time}</p>
@@ -111,7 +109,7 @@ export default function ExecutiveDashboard() {
               </div>
             ))}
           </div>
-        </div>
+        </GlassCard>
       ),
     },
     weather: { span: "col-span-12 lg:col-span-4", node: <WeatherWidget /> },
