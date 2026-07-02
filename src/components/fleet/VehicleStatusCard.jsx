@@ -1,5 +1,4 @@
-import { useState, useRef, useCallback } from "react";
-import { MoreHorizontal, Wrench, TrendingUp, CheckCircle, Move, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { MoreHorizontal, Wrench, TrendingUp, CheckCircle } from "lucide-react";
 
 const TRUCK_IMG = "https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/15890aad2_image.png";
 
@@ -24,77 +23,20 @@ function ProgressBar({ label, percent }) {
   );
 }
 
-function EditableImage() {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [dragging, setDragging] = useState(false);
-  const dragStart = useRef({ x: 0, y: 0, posX: 0, posY: 0 });
-
-  const onPointerDown = useCallback((e) => {
-    setDragging(true);
-    dragStart.current = { x: e.clientX, y: e.clientY, posX: pos.x, posY: pos.y };
-  }, [pos]);
-
-  const onPointerMove = useCallback((e) => {
-    if (!dragging) return;
-    setPos({
-      x: dragStart.current.posX + (e.clientX - dragStart.current.x),
-      y: dragStart.current.posY + (e.clientY - dragStart.current.y),
-    });
-  }, [dragging]);
-
-  const onPointerUp = useCallback(() => setDragging(false), []);
-
-  const reset = () => { setPos({ x: 0, y: 0 }); setZoom(1); };
-
+function TruckImage() {
   return (
-    <div className="relative mx-5 mt-4 overflow-hidden group/img">
-      <div
-        className="relative h-52 cursor-grab active:cursor-grabbing select-none"
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
-      >
+    <div className="relative mx-5 mt-4 overflow-hidden">
+      <div className="relative h-52 select-none">
         <img
           src={TRUCK_IMG}
           alt="Truck 03"
           draggable={false}
           className="absolute inset-0 h-full w-full object-contain p-4 pointer-events-none"
           style={{
-            transform: `translate(${pos.x}px, ${pos.y}px) scale(${zoom})`,
-            transition: dragging ? "none" : "transform 0.1s ease-out",
             maskImage: 'radial-gradient(ellipse 115% 115% at 50% 50%, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 88%)',
             WebkitMaskImage: 'radial-gradient(ellipse 115% 115% at 50% 50%, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 88%)',
           }}
         />
-      </div>
-
-      {/* Image controls */}
-      <div className="absolute top-1.5 right-1.5 flex items-center gap-1 opacity-0 group-hover/img:opacity-100 transition-opacity bg-white/80 backdrop-blur-sm rounded-lg p-1 shadow-md">
-        <button
-          onClick={() => setZoom((z) => Math.max(0.5, z - 0.1))}
-          className="p-1 rounded hover:bg-robur-charcoal/10"
-          title="Zoom out"
-        >
-          <ZoomOut className="h-3.5 w-3.5 text-robur-charcoal" strokeWidth={1.5} />
-        </button>
-        <span className="text-[10px] font-medium text-robur-charcoal w-8 text-center">{Math.round(zoom * 100)}%</span>
-        <button
-          onClick={() => setZoom((z) => Math.min(3, z + 0.1))}
-          className="p-1 rounded hover:bg-robur-charcoal/10"
-          title="Zoom in"
-        >
-          <ZoomIn className="h-3.5 w-3.5 text-robur-charcoal" strokeWidth={1.5} />
-        </button>
-        <div className="w-px h-4 bg-robur-charcoal/15" />
-        <button onClick={reset} className="p-1 rounded hover:bg-robur-charcoal/10" title="Reset">
-          <RotateCcw className="h-3.5 w-3.5 text-robur-charcoal" strokeWidth={1.5} />
-        </button>
-      </div>
-      <div className="absolute top-1.5 left-1.5 flex items-center gap-1 opacity-0 group-hover/img:opacity-100 transition-opacity bg-white/80 backdrop-blur-sm rounded-lg px-2 py-1 shadow-md">
-        <Move className="h-3 w-3 text-robur-steel" strokeWidth={1.5} />
-        <span className="text-[10px] font-medium text-robur-steel">Drag to reposition</span>
       </div>
     </div>
   );
@@ -113,25 +55,32 @@ export default function VehicleStatusCard() {
       </div>
 
       {/* Truck image */}
-      <EditableImage />
+      <TruckImage />
 
-      {/* Status list + service footer */}
-      <div className="px-5 pt-4 flex items-start justify-between gap-4">
-        <div className="space-y-2">
+      {/* Status list */}
+      <div className="px-5 pt-4">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
           {statusItems.map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-robur-yellow" />
+              <span className="h-2 w-2 rounded-full bg-robur-yellow shrink-0" />
               <span className="text-xs font-medium text-robur-charcoal">{s.label}</span>
               <span className="text-xs text-robur-steel">— {s.value}</span>
             </div>
           ))}
         </div>
-        <div className="flex items-center gap-2 rounded-lg bg-robur-charcoal/[0.03] px-3 py-2">
-          <Wrench className="h-4 w-4 text-robur-charcoal" strokeWidth={1.5} />
-          <div>
+      </div>
+
+      {/* Next service pill — full width */}
+      <div className="px-5 pt-3">
+        <div className="flex items-center gap-3 rounded-xl bg-robur-charcoal/[0.03] px-4 py-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-robur-yellow/10">
+            <Wrench className="h-4 w-4 text-robur-yellow" strokeWidth={1.5} />
+          </div>
+          <div className="flex-1">
             <p className="text-[10px] text-robur-steel">Next Service</p>
             <p className="text-xs font-bold text-robur-charcoal">in 5,200 km</p>
           </div>
+          <span className="rounded-md bg-robur-yellow/10 px-2 py-0.5 text-[9px] font-bold text-robur-yellow">DUE SOON</span>
         </div>
       </div>
 

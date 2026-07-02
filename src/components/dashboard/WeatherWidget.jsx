@@ -71,7 +71,7 @@ export default function WeatherWidget() {
 
   if (loading) {
     return (
-      <div className="rounded-2xl p-5 h-full flex items-center justify-center bg-robur-charcoal/5">
+      <div className="rounded-2xl p-5 h-full flex items-center justify-center glass-2">
         <div className="h-6 w-6 border-2 border-robur-light border-t-robur-charcoal rounded-full animate-spin" />
       </div>
     );
@@ -79,7 +79,7 @@ export default function WeatherWidget() {
 
   if (!weather) {
     return (
-      <div className="rounded-2xl p-5 h-full bg-robur-charcoal/5">
+      <div className="rounded-2xl p-5 h-full glass-2">
         <p className="text-xs text-robur-steel">Weather unavailable</p>
       </div>
     );
@@ -89,7 +89,7 @@ export default function WeatherWidget() {
 
   return (
     <div
-      className="rounded-2xl p-5 h-full relative overflow-hidden"
+      className="rounded-2xl p-5 h-full relative overflow-hidden glass-2"
       style={{ background: THEME_BG[theme] }}
     >
       <WeatherBackground weatherCode={weather.code} />
