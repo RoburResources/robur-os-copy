@@ -76,9 +76,9 @@ function DraggableCard({ id, index, size, onResize, children }) {
 
 export default function ExecutiveDashboard() {
   const [metricOrder, setMetricOrder] = useState(["fleet-m", "ontime-m"]);
-  const [cardOrder, setCardOrder] = useState(["revenue", "alerts", "vehicle", "activity", "quick"]);
+  const [cardOrder, setCardOrder] = useState(["revenue", "alerts"]);
   const [cardSizes, setCardSizes] = useState({
-    revenue: 8, alerts: 4, weather: 4, vehicle: 5, activity: 7, quick: 5,
+    revenue: 8, alerts: 4,
   });
 
   const metrics = {
@@ -186,7 +186,7 @@ export default function ExecutiveDashboard() {
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        className={cn("relative group", snapshot.isDragging && "z-50")}
+                        className={cn("relative group h-full", snapshot.isDragging && "z-50")}
                       >
                         <div
                           {...provided.dragHandleProps}
@@ -229,6 +229,15 @@ export default function ExecutiveDashboard() {
             </div>
           )}
         </Droppable>
+
+        {/* Vehicle left, Activity + Quick stacked right */}
+        <div className="grid grid-cols-12 gap-5 mt-5">
+          <div className="col-span-12 lg:col-span-5">{cards.vehicle.node}</div>
+          <div className="col-span-12 lg:col-span-7 flex flex-col gap-5">
+            {cards.activity.node}
+            {cards.quick.node}
+          </div>
+        </div>
       </DragDropContext>
     </div>
   );

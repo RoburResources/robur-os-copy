@@ -45,7 +45,7 @@ function Clouds() {
             height: `${28 + (i % 2) * 10}px`,
             width: `${120 + (i % 3) * 40}px`,
           }}
-          animate={{ x: ["-20%", "140%"] }}
+          animate={{ left: ["-30%", "130%"] }}
           transition={{ duration: 10 + i * 3, repeat: Infinity, ease: "linear", delay: i * 2.5 }}
         />
       ))}

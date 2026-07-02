@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export default function MetricCard({ label, value, change, changeType = "up", icon: Icon, className }) {
   return (
-    <GlassCard level={2} hover className={cn("p-5", className)}>
+    <GlassCard level={2} hover className={cn("p-5 h-full", className)}>
       <div className="flex items-start justify-between">
         <div className="space-y-2">
           <p className="text-xs font-medium uppercase tracking-wider text-robur-steel">{label}</p>

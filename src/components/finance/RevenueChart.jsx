@@ -34,7 +34,7 @@ export default function RevenueChart() {
         </div>
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5 text-[10px] font-medium text-robur-steel">
-            <span className="h-2 w-2 rounded-full bg-robur-yellow" /> Revenue
+            <span className="h-2 w-2 rounded-full bg-robur-yellow shadow-[0_0_8px_rgba(255,196,0,0.6)]" /> Revenue
           </span>
           <span className="flex items-center gap-1.5 text-[10px] font-medium text-robur-steel">
             <span className="h-2 w-2 rounded-full bg-robur-charcoal" /> Margin
@@ -44,6 +44,13 @@ export default function RevenueChart() {
       <ResponsiveContainer width="100%" height={220}>
         <AreaChart data={data} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
           <defs>
+            <filter id="yellowGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
             <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#FFC400" stopOpacity={0.2} />
               <stop offset="95%" stopColor="#FFC400" stopOpacity={0} />
@@ -57,7 +64,7 @@ export default function RevenueChart() {
           <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#5E6770" }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fontSize: 10, fill: "#5E6770" }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v / 1000}K`} />
           <Tooltip content={<CustomTooltip />} />
-          <Area type="monotone" dataKey="revenue" stroke="#FFC400" strokeWidth={2} fill="url(#revenueGrad)" />
+          <Area type="monotone" dataKey="revenue" stroke="#FFC400" strokeWidth={2} fill="url(#revenueGrad)" filter="url(#yellowGlow)" />
           <Area type="monotone" dataKey="margin" stroke="#22262B" strokeWidth={1.5} fill="url(#marginGrad)" />
         </AreaChart>
       </ResponsiveContainer>
