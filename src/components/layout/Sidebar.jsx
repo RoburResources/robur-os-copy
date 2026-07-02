@@ -93,7 +93,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
       {/* Logo */}
       <div
         className={cn(
-          "flex h-16 items-center gap-3 border-b border-white/5",
+          "flex h-16 items-center gap-3 border-b border-robur-charcoal/10",
           collapsed ? "justify-center px-2" : "px-6"
         )}
       >
@@ -102,7 +102,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
         </div>
         {!collapsed && (
           <div>
-            <p className="text-sm font-semibold text-white tracking-tight">Robur Resources</p>
+            <p className="text-sm font-semibold text-robur-charcoal tracking-tight">Robur Resources</p>
             <p className="text-[10px] font-medium text-robur-steel">Operations Platform</p>
           </div>
         )}
@@ -113,7 +113,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
         {navSections.map((section) => (
           <div key={section.label}>
             {!collapsed && (
-              <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest text-robur-steel/60">
+              <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest text-robur-steel">
                 {section.label}
               </p>
             )}
@@ -129,8 +129,8 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
                       "flex items-center rounded-xl py-2.5 text-sm font-medium transition-all duration-200",
                       collapsed ? "justify-center px-2" : "gap-3 px-3",
                       isActive
-                        ? "bg-robur-yellow/10 text-robur-yellow"
-                        : "text-robur-light/70 hover:bg-white/5 hover:text-white"
+                        ? "bg-robur-yellow/20 text-robur-charcoal"
+                        : "text-robur-steel hover:bg-robur-charcoal/5 hover:text-robur-charcoal"
                     )}
                   >
                     <item.icon className="h-4 w-4 shrink-0" strokeWidth={isActive ? 2 : 1.5} />
@@ -147,12 +147,12 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
       </nav>
 
       {/* Bottom */}
-      <div className="border-t border-white/5 p-3 space-y-0.5">
+      <div className="border-t border-robur-charcoal/10 p-3 space-y-0.5">
         <Link
           to="/notifications"
           title={collapsed ? "Notifications" : undefined}
           className={cn(
-            "flex items-center rounded-xl py-2.5 text-sm font-medium text-robur-light/70 hover:bg-white/5 hover:text-white transition-all",
+            "flex items-center rounded-xl py-2.5 text-sm font-medium text-robur-steel hover:bg-robur-charcoal/5 hover:text-robur-charcoal transition-all",
             collapsed ? "justify-center px-2" : "gap-3 px-3"
           )}
         >
@@ -173,7 +173,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
           to="/settings"
           title={collapsed ? "Settings" : undefined}
           className={cn(
-            "flex items-center rounded-xl py-2.5 text-sm font-medium text-robur-light/70 hover:bg-white/5 hover:text-white transition-all",
+            "flex items-center rounded-xl py-2.5 text-sm font-medium text-robur-steel hover:bg-robur-charcoal/5 hover:text-robur-charcoal transition-all",
             collapsed ? "justify-center px-2" : "gap-3 px-3"
           )}
         >
@@ -185,7 +185,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
             <button
               title={collapsed ? "Delete Account" : undefined}
               className={cn(
-                "flex w-full items-center rounded-xl py-2.5 text-sm font-medium text-robur-light/40 hover:bg-white/5 hover:text-red-400 transition-all",
+                "flex w-full items-center rounded-xl py-2.5 text-sm font-medium text-robur-steel/60 hover:bg-robur-charcoal/5 hover:text-red-500 transition-all",
                 collapsed ? "justify-center px-2" : "gap-3 px-3"
               )}
             >
@@ -217,7 +217,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
           onClick={() => base44.auth.logout()}
           title={collapsed ? "Sign Out" : undefined}
           className={cn(
-            "flex w-full items-center rounded-xl py-2.5 text-sm font-medium text-robur-light/40 hover:bg-white/5 hover:text-red-400 transition-all",
+            "flex w-full items-center rounded-xl py-2.5 text-sm font-medium text-robur-steel/60 hover:bg-robur-charcoal/5 hover:text-red-500 transition-all",
             collapsed ? "justify-center px-2" : "gap-3 px-3"
           )}
         >
