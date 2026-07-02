@@ -11,7 +11,7 @@ export default function AppLayout() {
   const [sidebarHovered, setSidebarHovered] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-transparent">
       {/* Blurred background image to test glass card effect */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <img
