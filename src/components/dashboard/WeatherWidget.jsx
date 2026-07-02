@@ -103,20 +103,6 @@ export default function WeatherWidget() {
       whileHover={{ y: -4, scale: 1.008 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
-      <img
-        src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/088eb90b0_image.png"
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: "center top" }}
-      />
-      <div
-        className="absolute inset-x-0 bottom-0 h-2/5"
-        style={{
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-          background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.08))",
-        }}
-      />
       <WeatherBackground weatherCode={weather.code} />
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-3">

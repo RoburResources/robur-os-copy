@@ -26,18 +26,18 @@ function ProgressBar({ label, percent }) {
 
 function TruckImage() {
   return (
-    <div className="relative mt-4 overflow-hidden">
-      <div className="relative h-[200px] select-none">
+    <div className="relative -mx-px -mt-px overflow-hidden">
+      <div className="relative h-[260px] select-none">
         <img
           src={TRUCK_IMG}
           alt="Truck 03"
           draggable={false}
           className="absolute inset-0 h-full w-full object-cover pointer-events-none"
-          style={{ objectPosition: "center 40%" }}
+          style={{ objectPosition: "center 38%" }}
         />
         <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(255,255,255,0.85) 100%)" }}
+          className="absolute inset-x-0 bottom-0 h-24"
+          style={{ background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.9) 100%)" }}
         />
       </div>
     </div>
