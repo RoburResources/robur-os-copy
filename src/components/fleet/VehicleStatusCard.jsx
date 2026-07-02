@@ -26,7 +26,7 @@ function ProgressBar({ label, percent }) {
 
 function TruckImage() {
   return (
-    <div className="relative -mx-px -mt-px overflow-hidden border-b-2 border-robur-yellow">
+    <div className="relative -mx-px -mt-px overflow-hidden">
       <div className="relative h-[260px] select-none">
         <img
           src={TRUCK_IMG}
