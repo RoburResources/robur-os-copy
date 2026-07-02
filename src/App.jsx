@@ -39,9 +39,17 @@ const AuthenticatedApp = () => {
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white">
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-robur-yellow">
-            <span className="text-lg font-black text-robur-charcoal">R</span>
+        <div className="flex flex-col items-center gap-6">
+          <div className="animate-float">
+            <img
+              src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/15890aad2_image.png"
+              alt="Robur Resources"
+              className="h-64 w-64 object-contain animate-pulse-soft"
+              style={{
+                maskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 60%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 60%, transparent 100%)",
+              }}
+            />
           </div>
           <div className="w-8 h-8 border-2 border-robur-light border-t-robur-charcoal rounded-full animate-spin" />
         </div>
