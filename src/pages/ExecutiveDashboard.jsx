@@ -2,6 +2,7 @@ import TopBar from "@/components/layout/TopBar";
 import MetricCard from "@/components/ui/MetricCard";
 import GlassCard from "@/components/ui/GlassCard";
 import RevenueChart from "@/components/finance/RevenueChart";
+import VehicleStatusCard from "@/components/fleet/VehicleStatusCard";
 import { motion } from "framer-motion";
 import { DollarSign, Truck, Package, CheckCircle, ArrowRight, TrendingUp, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -67,6 +68,10 @@ export default function ExecutiveDashboard() {
               ))}
             </div>
           </GlassCard>
+        </motion.div>
+
+        <motion.div className="col-span-12 lg:col-span-5" {...fadeIn} transition={{ delay: 0.3 }}>
+          <VehicleStatusCard />
         </motion.div>
 
         <motion.div className="col-span-12 lg:col-span-7" {...fadeIn} transition={{ delay: 0.3 }}>
