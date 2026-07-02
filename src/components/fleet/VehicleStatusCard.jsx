@@ -64,9 +64,8 @@ function EditableImage() {
           style={{
             transform: `translate(${pos.x}px, ${pos.y}px) scale(${zoom})`,
             transition: dragging ? "none" : "transform 0.1s ease-out",
-            maskImage: 'radial-gradient(ellipse 100% 100% at 50% 50%, black 5%, rgba(0,0,0,0.7) 35%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 100% 100% at 50% 50%, black 5%, rgba(0,0,0,0.7) 35%, transparent 80%)',
-            filter: 'blur(1px)',
+            maskImage: 'radial-gradient(ellipse 115% 115% at 50% 50%, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 88%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 115% 115% at 50% 50%, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 88%)',
           }}
         />
       </div>
