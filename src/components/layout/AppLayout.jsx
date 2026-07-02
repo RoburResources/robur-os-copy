@@ -15,7 +15,7 @@ export default function AppLayout() {
       {/* Blurred background image to test glass card effect */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <img
-          src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/088eb90b0_image.png"
+          src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/059ef1d21_image.png"
           alt=""
           className="absolute inset-0 w-full h-full object-cover scale-105"
           style={{ filter: "blur(32px) saturate(1.15) brightness(1.05)" }}
