@@ -32,55 +32,68 @@ function SunRays() {
   );
 }
 
-const CLOUD_VARIANTS = [
-  [
-    { w: 40, h: 40, left: 0, top: 12 },
-    { w: 55, h: 55, left: 22, top: 0 },
-    { w: 48, h: 48, left: 48, top: 4 },
-    { w: 38, h: 38, left: 72, top: 10 },
-  ],
-  [
-    { w: 35, h: 35, left: 0, top: 15 },
-    { w: 50, h: 50, left: 18, top: 0 },
-    { w: 60, h: 60, left: 38, top: -5 },
-    { w: 45, h: 45, left: 68, top: 5 },
-    { w: 32, h: 32, left: 88, top: 14 },
-  ],
-  [
-    { w: 30, h: 30, left: 0, top: 10 },
-    { w: 42, h: 42, left: 18, top: 0 },
-    { w: 36, h: 36, left: 48, top: 6 },
-  ],
-  [
-    { w: 35, h: 30, left: 0, top: 8 },
-    { w: 45, h: 40, left: 18, top: 0 },
-    { w: 52, h: 46, left: 38, top: -2 },
-    { w: 45, h: 40, left: 60, top: 0 },
-    { w: 35, h: 30, left: 84, top: 8 },
-  ],
+// Realistic SVG cloud paths — organic bumpy silhouettes, not flat circles.
+// Each path defines a distinct cloud outline with natural lumps and dips.
+const CLOUD_PATHS = [
+  // Large fluffy cumulus
+  "M 18 62 C 6 62 2 50 10 44 C 6 36 14 26 24 28 C 26 16 42 12 50 22 C 56 10 76 12 78 28 C 92 26 96 42 86 48 C 94 54 90 62 80 62 Z",
+  // Medium wispy cloud
+  "M 12 50 C 4 50 2 42 8 38 C 6 30 16 26 22 32 C 26 22 40 20 44 30 C 52 22 66 26 66 36 C 78 34 82 44 74 48 C 80 52 76 56 68 56 L 20 56 C 12 56 8 54 12 50 Z",
+  // Small puffy cloud
+  "M 16 48 C 6 48 4 40 10 36 C 8 28 20 24 26 30 C 30 22 46 22 48 32 C 56 28 64 34 60 42 C 66 46 62 50 54 50 L 24 50 C 18 50 14 50 16 48 Z",
+  // Wide spread cloud
+  "M 8 56 C 0 56 2 46 10 42 C 6 32 18 26 28 30 C 30 18 50 16 56 28 C 62 18 84 20 84 34 C 98 32 104 46 94 52 C 100 56 96 60 86 60 L 22 60 C 12 60 6 60 8 56 Z",
 ];
 
-function CloudShape({ variant }) {
-  const puffs = CLOUD_VARIANTS[variant % CLOUD_VARIANTS.length];
+function CloudShape({ variant, opacity = 0.9 }) {
+  const path = CLOUD_PATHS[variant % CLOUD_PATHS.length];
+  const gradId = `cloud-grad-${variant}`;
+  const shadowId = `cloud-shadow-${variant}`;
   return (
-    <div className="relative" style={{ width: 130, height: 60 }}>
-      {puffs.map((p, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full bg-white/80 blur-[3px]"
-          style={{ width: p.w, height: p.h, left: `${p.left}%`, top: p.top }}
-        />
-      ))}
-    </div>
+    <svg
+      width="120"
+      height="70"
+      viewBox="0 0 100 70"
+      style={{ filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.12))" }}
+    >
+      <defs>
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity={opacity} />
+          <stop offset="60%" stopColor="#f0f4f8" stopOpacity={opacity} />
+          <stop offset="100%" stopColor="#d8e2ec" stopOpacity={opacity * 0.85} />
+        </linearGradient>
+        <radialGradient id={shadowId} cx="50%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity={opacity * 0.5} />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      {/* Soft glow underneath */}
+      <ellipse cx="50" cy="40" rx="48" ry="28" fill={`url(#${shadowId})`} />
+      {/* Main cloud body */}
+      <path
+        d={path}
+        fill={`url(#${gradId})`}
+      />
+      {/* Highlight bumps on top for depth */}
+      <path
+        d={path}
+        fill="none"
+        stroke="rgba(255,255,255,0.6)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.5"
+      />
+    </svg>
   );
 }
 
 function Clouds() {
   const clouds = [
-    { top: "8%", scale: 1, duration: 20, delay: 0, variant: 0 },
-    { top: "28%", scale: 0.7, duration: 26, delay: 5, variant: 1 },
-    { top: "50%", scale: 1.15, duration: 32, delay: 10, variant: 2 },
-    { top: "70%", scale: 0.85, duration: 38, delay: 15, variant: 3 },
+    { top: "6%", scale: 1, duration: 20, delay: 0, variant: 0, opacity: 0.92 },
+    { top: "26%", scale: 0.65, duration: 26, delay: 5, variant: 1, opacity: 0.85 },
+    { top: "48%", scale: 1.2, duration: 32, delay: 10, variant: 3, opacity: 0.9 },
+    { top: "68%", scale: 0.8, duration: 38, delay: 15, variant: 2, opacity: 0.8 },
   ];
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -92,7 +105,7 @@ function Clouds() {
           animate={{ left: ["-30%", "130%"] }}
           transition={{ duration: c.duration, repeat: Infinity, ease: "linear", delay: c.delay }}
         >
-          <CloudShape variant={c.variant} />
+          <CloudShape variant={c.variant} opacity={c.opacity} />
         </motion.div>
       ))}
     </div>
