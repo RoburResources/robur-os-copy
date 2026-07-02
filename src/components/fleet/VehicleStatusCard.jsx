@@ -1,7 +1,7 @@
 import { MoreHorizontal, Wrench, TrendingUp, CheckCircle } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 
-const TRUCK_IMG = "https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/15890aad2_image.png";
+const TRUCK_IMG = "https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/7f9e77d19_image.png";
 
 const statusItems = [
   { label: "Engine", value: "Good" },
@@ -26,17 +26,18 @@ function ProgressBar({ label, percent }) {
 
 function TruckImage() {
   return (
-    <div className="relative mx-5 mt-4 overflow-hidden">
-      <div className="relative h-[260px] select-none">
+    <div className="relative mt-4 overflow-hidden">
+      <div className="relative h-[200px] select-none">
         <img
           src={TRUCK_IMG}
           alt="Truck 03"
           draggable={false}
-          className="absolute inset-0 h-full w-full object-contain p-4 pointer-events-none"
-          style={{
-            maskImage: 'radial-gradient(ellipse 115% 115% at 50% 50%, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 88%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 115% 115% at 50% 50%, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 88%)',
-          }}
+          className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+          style={{ objectPosition: "center 40%" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(255,255,255,0.85) 100%)" }}
         />
       </div>
     </div>

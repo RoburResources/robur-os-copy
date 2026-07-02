@@ -104,7 +104,7 @@ export default function WeatherWidget() {
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
       <img
-        src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/7f9e77d19_image.png"
+        src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/088eb90b0_image.png"
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
         style={{ objectPosition: "center top" }}
