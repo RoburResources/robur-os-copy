@@ -6,30 +6,40 @@ const PERTH_COORDS = { lat: -31.9505, lon: 115.8605 };
 
 function getWeatherInfo(code) {
   const map = {
-    0: { icon: Sun, label: "Clear sky" },
-    1: { icon: CloudSun, label: "Mainly clear" },
-    2: { icon: CloudSun, label: "Partly cloudy" },
-    3: { icon: Cloud, label: "Overcast" },
-    45: { icon: CloudFog, label: "Fog" },
-    48: { icon: CloudFog, label: "Rime fog" },
-    51: { icon: CloudDrizzle, label: "Light drizzle" },
-    53: { icon: CloudDrizzle, label: "Drizzle" },
-    55: { icon: CloudDrizzle, label: "Heavy drizzle" },
-    61: { icon: CloudRain, label: "Light rain" },
-    63: { icon: CloudRain, label: "Rain" },
-    65: { icon: CloudRain, label: "Heavy rain" },
-    71: { icon: CloudSnow, label: "Light snow" },
-    73: { icon: CloudSnow, label: "Snow" },
-    75: { icon: CloudSnow, label: "Heavy snow" },
-    80: { icon: CloudRain, label: "Rain showers" },
-    81: { icon: CloudRain, label: "Rain showers" },
-    82: { icon: CloudRain, label: "Violent showers" },
-    95: { icon: CloudLightning, label: "Thunderstorm" },
-    96: { icon: CloudLightning, label: "Thunderstorm" },
-    99: { icon: CloudLightning, label: "Thunderstorm" },
+    0: { icon: Sun, label: "Clear sky", theme: "clear" },
+    1: { icon: CloudSun, label: "Mainly clear", theme: "clear" },
+    2: { icon: CloudSun, label: "Partly cloudy", theme: "partlycloudy" },
+    3: { icon: Cloud, label: "Overcast", theme: "cloudy" },
+    45: { icon: CloudFog, label: "Fog", theme: "fog" },
+    48: { icon: CloudFog, label: "Rime fog", theme: "fog" },
+    51: { icon: CloudDrizzle, label: "Light drizzle", theme: "rain" },
+    53: { icon: CloudDrizzle, label: "Drizzle", theme: "rain" },
+    55: { icon: CloudDrizzle, label: "Heavy drizzle", theme: "rain" },
+    61: { icon: CloudRain, label: "Light rain", theme: "rain" },
+    63: { icon: CloudRain, label: "Rain", theme: "rain" },
+    65: { icon: CloudRain, label: "Heavy rain", theme: "rain" },
+    71: { icon: CloudSnow, label: "Light snow", theme: "snow" },
+    73: { icon: CloudSnow, label: "Snow", theme: "snow" },
+    75: { icon: CloudSnow, label: "Heavy snow", theme: "snow" },
+    80: { icon: CloudRain, label: "Rain showers", theme: "rain" },
+    81: { icon: CloudRain, label: "Rain showers", theme: "rain" },
+    82: { icon: CloudRain, label: "Violent showers", theme: "rain" },
+    95: { icon: CloudLightning, label: "Thunderstorm", theme: "storm" },
+    96: { icon: CloudLightning, label: "Thunderstorm", theme: "storm" },
+    99: { icon: CloudLightning, label: "Thunderstorm", theme: "storm" },
   };
-  return map[code] || { icon: Cloud, label: "Unknown" };
+  return map[code] || { icon: Cloud, label: "Unknown", theme: "cloudy" };
 }
+
+const THEME_BG = {
+  clear: "linear-gradient(135deg, #1e88e5 0%, #42a5f5 40%, #90caf9 100%)",
+  partlycloudy: "linear-gradient(135deg, #4e73a8 0%, #7898c8 50%, #b0c4de 100%)",
+  cloudy: "linear-gradient(135deg, #607d8b 0%, #78909c 50%, #90a4ae 100%)",
+  rain: "linear-gradient(135deg, #37474f 0%, #546e7a 50%, #78909c 100%)",
+  storm: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #2a3b5c 100%)",
+  snow: "linear-gradient(135deg, #90a4ae 0%, #b0bec5 50%, #eceff1 100%)",
+  fog: "linear-gradient(135deg, #78909c 0%, #90a4ae 50%, #b0bec5 100%)",
+};
 
 export default function WeatherWidget() {
   const [weather, setWeather] = useState(null);
@@ -61,7 +71,7 @@ export default function WeatherWidget() {
 
   if (loading) {
     return (
-      <div className="glass-2 rounded-2xl p-5 h-full flex items-center justify-center">
+      <div className="rounded-2xl p-5 h-full flex items-center justify-center bg-robur-charcoal/5">
         <div className="h-6 w-6 border-2 border-robur-light border-t-robur-charcoal rounded-full animate-spin" />
       </div>
     );
@@ -69,37 +79,40 @@ export default function WeatherWidget() {
 
   if (!weather) {
     return (
-      <div className="glass-2 rounded-2xl p-5 h-full">
+      <div className="rounded-2xl p-5 h-full bg-robur-charcoal/5">
         <p className="text-xs text-robur-steel">Weather unavailable</p>
       </div>
     );
   }
 
-  const { icon: WeatherIcon, label } = getWeatherInfo(weather.code);
+  const { icon: WeatherIcon, label, theme } = getWeatherInfo(weather.code);
 
   return (
-    <div className="glass-2 rounded-2xl p-5 h-full relative overflow-hidden">
+    <div
+      className="rounded-2xl p-5 h-full relative overflow-hidden"
+      style={{ background: THEME_BG[theme] }}
+    >
       <WeatherBackground weatherCode={weather.code} />
       <div className="relative z-10">
-        <div className="flex items-center gap-2 mb-4">
-          <MapPin className="h-3.5 w-3.5 text-robur-steel" strokeWidth={1.5} />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Perth, WA</h3>
+        <div className="flex items-center gap-2 mb-3">
+          <MapPin className="h-3.5 w-3.5 text-white/80" strokeWidth={2} />
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-white/80">Perth, WA</h3>
         </div>
         <div className="flex items-center gap-4">
-          <WeatherIcon className="h-14 w-14 text-robur-charcoal" strokeWidth={1.5} />
+          <WeatherIcon className="h-16 w-16 text-white drop-shadow-lg" strokeWidth={1.5} />
           <div>
-            <p className="text-3xl font-bold tracking-tight text-robur-charcoal">{weather.temp}°C</p>
-            <p className="text-xs text-robur-steel">{label}</p>
+            <p className="text-4xl font-bold tracking-tight text-white drop-shadow">{weather.temp}°C</p>
+            <p className="text-sm text-white/80 font-medium">{label}</p>
           </div>
         </div>
-        <div className="flex items-center gap-5 mt-4 pt-3 border-t border-robur-charcoal/10">
+        <div className="flex items-center gap-5 mt-4 pt-3 border-t border-white/20">
           <div className="flex items-center gap-1.5">
-            <Wind className="h-3.5 w-3.5 text-robur-steel" strokeWidth={1.5} />
-            <span className="text-xs font-medium text-robur-charcoal">{weather.windSpeed} km/h</span>
+            <Wind className="h-4 w-4 text-white/80" strokeWidth={2} />
+            <span className="text-xs font-semibold text-white">{weather.windSpeed} km/h</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Droplets className="h-3.5 w-3.5 text-robur-steel" strokeWidth={1.5} />
-            <span className="text-xs font-medium text-robur-charcoal">{weather.humidity}%</span>
+            <Droplets className="h-4 w-4 text-white/80" strokeWidth={2} />
+            <span className="text-xs font-semibold text-white">{weather.humidity}%</span>
           </div>
         </div>
       </div>
