@@ -33,13 +33,13 @@ function getWeatherInfo(code) {
 }
 
 const THEME_BG = {
-  clear: "linear-gradient(180deg, #1565C0 0%, #1E88E5 30%, #42A5F5 60%, #90CAF9 85%, #BBDEFB 100%)",
-  partlycloudy: "linear-gradient(180deg, #4E73A8 0%, #6B8FBE 40%, #94B2D6 75%, #B0C4DE 100%)",
-  cloudy: "linear-gradient(180deg, #546E7A 0%, #607D8B 35%, #78909C 70%, #90A4AE 100%)",
-  rain: "linear-gradient(180deg, #263238 0%, #37474F 35%, #455A64 70%, #546E7A 100%)",
-  storm: "linear-gradient(180deg, #0D1B2A 0%, #1B263B 35%, #1B263B 70%, #0D1B2A 100%)",
-  snow: "linear-gradient(180deg, #78909C 0%, #90A4AE 35%, #B0BEC5 70%, #CFD8DC 100%)",
-  fog: "linear-gradient(180deg, #607D8B 0%, #78909C 35%, #90A4AE 70%, #B0BEC5 100%)",
+  clear: "linear-gradient(180deg, #4B3E35 0%, #6C5A4C 30%, #C6A282 60%, #DAB997 85%, #F8E5C4 100%)",
+  partlycloudy: "linear-gradient(180deg, #352D28 0%, #4B3E35 40%, #C6A282 75%, #DAB997 100%)",
+  cloudy: "linear-gradient(180deg, #352D28 0%, #4B3E35 35%, #6C5A4C 70%, #C6A282 100%)",
+  rain: "linear-gradient(180deg, #2B2520 0%, #352D28 35%, #4B3E35 70%, #6C5A4C 100%)",
+  storm: "linear-gradient(180deg, #221C18 0%, #2B2520 35%, #352D28 70%, #221C18 100%)",
+  snow: "linear-gradient(180deg, #4B3E35 0%, #6C5A4C 35%, #C6A282 70%, #DAB997 100%)",
+  fog: "linear-gradient(180deg, #352D28 0%, #4B3E35 35%, #6C5A4C 70%, #C6A282 100%)",
 };
 
 export default function WeatherWidget() {
