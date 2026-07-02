@@ -1,4 +1,5 @@
 import { MoreHorizontal, Wrench, TrendingUp, CheckCircle } from "lucide-react";
+import GlassCard from "@/components/ui/GlassCard";
 
 const TRUCK_IMG = "https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/15890aad2_image.png";
 
@@ -26,7 +27,7 @@ function ProgressBar({ label, percent }) {
 function TruckImage() {
   return (
     <div className="relative mx-5 mt-4 overflow-hidden">
-      <div className="relative h-52 select-none">
+      <div className="relative h-[260px] select-none">
         <img
           src={TRUCK_IMG}
           alt="Truck 03"
@@ -44,7 +45,7 @@ function TruckImage() {
 
 export default function VehicleStatusCard() {
   return (
-    <div className="rounded-2xl overflow-hidden glass-2">
+    <GlassCard level={2} className="overflow-hidden">
       {/* Header */}
       <div className="flex items-start justify-between px-5 pt-5">
         <div>
@@ -62,7 +63,7 @@ export default function VehicleStatusCard() {
         <div className="grid grid-cols-2 gap-x-4 gap-y-2">
           {statusItems.map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-robur-yellow shrink-0" />
+              <span className="h-2 w-2 rounded-full bg-robur-yellow shrink-0 group-hover:scale-125 transition-transform" />
               <span className="text-xs font-medium text-robur-charcoal">{s.label}</span>
               <span className="text-xs text-robur-steel">— {s.value}</span>
             </div>
@@ -72,8 +73,8 @@ export default function VehicleStatusCard() {
 
       {/* Next service pill — full width */}
       <div className="px-5 pt-3">
-        <div className="flex items-center gap-3 rounded-xl bg-robur-charcoal/[0.03] px-4 py-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-robur-yellow/10">
+        <div className="flex items-center gap-3 rounded-xl bg-robur-charcoal/[0.03] px-4 py-3 group-hover:bg-robur-charcoal/[0.06] transition-colors">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-robur-yellow/10 group-hover:scale-110 transition-transform">
             <Wrench className="h-4 w-4 text-robur-yellow" strokeWidth={1.5} />
           </div>
           <div className="flex-1">
@@ -104,6 +105,6 @@ export default function VehicleStatusCard() {
           </div>
         </div>
       </div>
-    </div>
+    </GlassCard>
   );
 }

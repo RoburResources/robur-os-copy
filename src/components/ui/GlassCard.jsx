@@ -8,22 +8,21 @@ const levels = {
   4: "glass-4",
 };
 
-export default function GlassCard({ children, level = 1, className, hover = false, ...props }) {
-  const Component = hover ? motion.div : "div";
+export default function GlassCard({ children, level = 1, className, hover = true, ...props }) {
   const hoverProps = hover
     ? {
-        whileHover: { y: -2, scale: 1.005 },
+        whileHover: { y: -4, scale: 1.008 },
         transition: { type: "spring", stiffness: 400, damping: 25 },
       }
     : {};
 
   return (
-    <Component
-      className={cn(levels[level], "rounded-2xl", className)}
+    <motion.div
+      className={cn(levels[level], "rounded-2xl group", className)}
       {...hoverProps}
       {...props}
     >
       {children}
-    </Component>
+    </motion.div>
   );
 }

@@ -32,22 +32,68 @@ function SunRays() {
   );
 }
 
+const CLOUD_VARIANTS = [
+  [
+    { w: 40, h: 40, left: 0, top: 12 },
+    { w: 55, h: 55, left: 22, top: 0 },
+    { w: 48, h: 48, left: 48, top: 4 },
+    { w: 38, h: 38, left: 72, top: 10 },
+  ],
+  [
+    { w: 35, h: 35, left: 0, top: 15 },
+    { w: 50, h: 50, left: 18, top: 0 },
+    { w: 60, h: 60, left: 38, top: -5 },
+    { w: 45, h: 45, left: 68, top: 5 },
+    { w: 32, h: 32, left: 88, top: 14 },
+  ],
+  [
+    { w: 30, h: 30, left: 0, top: 10 },
+    { w: 42, h: 42, left: 18, top: 0 },
+    { w: 36, h: 36, left: 48, top: 6 },
+  ],
+  [
+    { w: 35, h: 30, left: 0, top: 8 },
+    { w: 45, h: 40, left: 18, top: 0 },
+    { w: 52, h: 46, left: 38, top: -2 },
+    { w: 45, h: 40, left: 60, top: 0 },
+    { w: 35, h: 30, left: 84, top: 8 },
+  ],
+];
+
+function CloudShape({ variant }) {
+  const puffs = CLOUD_VARIANTS[variant % CLOUD_VARIANTS.length];
+  return (
+    <div className="relative" style={{ width: 130, height: 60 }}>
+      {puffs.map((p, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-white/80 blur-[3px]"
+          style={{ width: p.w, height: p.h, left: `${p.left}%`, top: p.top }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function Clouds() {
+  const clouds = [
+    { top: "8%", scale: 1, duration: 20, delay: 0, variant: 0 },
+    { top: "28%", scale: 0.7, duration: 26, delay: 5, variant: 1 },
+    { top: "50%", scale: 1.15, duration: 32, delay: 10, variant: 2 },
+    { top: "70%", scale: 0.85, duration: 38, delay: 15, variant: 3 },
+  ];
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(4)].map((_, i) => (
+      {clouds.map((c, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-white/80 blur-md"
-          style={{
-            top: `${10 + i * 20}%`,
-            left: "-30%",
-            height: `${28 + (i % 2) * 10}px`,
-            width: `${120 + (i % 3) * 40}px`,
-          }}
+          className="absolute"
+          style={{ top: c.top, left: "-30%", scale: c.scale }}
           animate={{ left: ["-30%", "130%"] }}
-          transition={{ duration: 10 + i * 3, repeat: Infinity, ease: "linear", delay: i * 2.5 }}
-        />
+          transition={{ duration: c.duration, repeat: Infinity, ease: "linear", delay: c.delay }}
+        >
+          <CloudShape variant={c.variant} />
+        </motion.div>
       ))}
     </div>
   );

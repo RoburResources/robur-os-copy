@@ -98,8 +98,8 @@ export default function ExecutiveDashboard() {
           </div>
           <div className="space-y-2">
             {alerts.map((a, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-lg bg-robur-charcoal/[0.03] px-3 py-2">
-                <div className="mt-1 h-2 w-2 rounded-full shrink-0 bg-robur-yellow shadow-[0_0_8px_rgba(255,196,0,0.6)]" />
+              <div key={i} className="flex items-start gap-3 rounded-lg bg-robur-charcoal/[0.03] px-3 py-2 group-hover:translate-x-1 transition-transform">
+                <div className="mt-1 h-2 w-2 rounded-full shrink-0 bg-robur-yellow shadow-[0_0_8px_rgba(255,196,0,0.6)] group-hover:scale-150 transition-transform" />
                 <div className="flex-1">
                   <p className="text-xs font-medium text-robur-charcoal">{a.message}</p>
                   <p className="text-[10px] text-robur-steel">{a.time}</p>
@@ -118,9 +118,9 @@ export default function ExecutiveDashboard() {
           <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel mb-4">Recent Activity</h3>
           <div className="space-y-3">
             {activity.map((a, i) => (
-              <div key={i} className="flex items-center gap-3 rounded-xl bg-robur-charcoal/[0.03] p-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/60">
-                  <TrendingUp className="h-4 w-4 text-robur-charcoal" strokeWidth={1.5} />
+              <div key={i} className="flex items-center gap-3 rounded-xl bg-robur-charcoal/[0.03] p-3 group-hover:bg-robur-charcoal/[0.06] transition-colors">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/60 group-hover:scale-110 group-hover:bg-robur-yellow/10 transition-all">
+                  <TrendingUp className="h-4 w-4 text-robur-charcoal group-hover:text-robur-yellow transition-colors" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
                   <p className="text-xs font-semibold text-robur-charcoal">{a.action}</p>

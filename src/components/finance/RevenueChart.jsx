@@ -30,11 +30,11 @@ export default function RevenueChart() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Revenue & Margin</h3>
-          <p className="text-2xl font-bold text-robur-charcoal mt-1">$1.99M <span className="text-sm font-medium text-robur-steel">YTD</span></p>
+          <p className="text-2xl font-bold text-robur-charcoal mt-1 group-hover:translate-x-0.5 transition-transform">$1.99M <span className="text-sm font-medium text-robur-steel">YTD</span></p>
         </div>
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5 text-[10px] font-medium text-robur-steel">
-            <span className="h-2 w-2 rounded-full bg-robur-yellow shadow-[0_0_8px_rgba(255,196,0,0.6)]" /> Revenue
+            <span className="h-2 w-2 rounded-full bg-robur-yellow shadow-[0_0_8px_rgba(255,196,0,0.6)] group-hover:shadow-[0_0_12px_rgba(255,196,0,0.9)] transition-shadow" /> Revenue
           </span>
           <span className="flex items-center gap-1.5 text-[10px] font-medium text-robur-steel">
             <span className="h-2 w-2 rounded-full bg-robur-charcoal" /> Margin

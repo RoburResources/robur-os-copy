@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Sun, CloudSun, Cloud, CloudRain, CloudDrizzle, CloudLightning, CloudSnow, CloudFog, Wind, Droplets, MapPin } from "lucide-react";
 import WeatherBackground from "./WeatherBackground";
 
@@ -71,26 +72,36 @@ export default function WeatherWidget() {
 
   if (loading) {
     return (
-      <div className="rounded-2xl p-5 h-full flex items-center justify-center glass-2">
+      <motion.div
+        className="rounded-2xl p-5 h-full flex items-center justify-center glass-2 group"
+        whileHover={{ y: -4, scale: 1.008 }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      >
         <div className="h-6 w-6 border-2 border-robur-light border-t-robur-charcoal rounded-full animate-spin" />
-      </div>
+      </motion.div>
     );
   }
 
   if (!weather) {
     return (
-      <div className="rounded-2xl p-5 h-full glass-2">
+      <motion.div
+        className="rounded-2xl p-5 h-full glass-2 group"
+        whileHover={{ y: -4, scale: 1.008 }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      >
         <p className="text-xs text-robur-steel">Weather unavailable</p>
-      </div>
+      </motion.div>
     );
   }
 
   const { icon: WeatherIcon, label, theme } = getWeatherInfo(weather.code);
 
   return (
-    <div
-      className="rounded-2xl p-5 h-full relative overflow-hidden glass-2"
+    <motion.div
+      className="rounded-2xl p-5 h-full relative overflow-hidden glass-2 group"
       style={{ background: THEME_BG[theme] }}
+      whileHover={{ y: -4, scale: 1.008 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
       <WeatherBackground weatherCode={weather.code} />
       <div className="relative z-10">
@@ -99,7 +110,7 @@ export default function WeatherWidget() {
           <h3 className="text-xs font-semibold uppercase tracking-wider text-white/80">Perth, WA</h3>
         </div>
         <div className="flex items-center gap-4">
-          <WeatherIcon className="h-16 w-16 text-white drop-shadow-lg" strokeWidth={1.5} />
+          <WeatherIcon className="h-16 w-16 text-white drop-shadow-lg group-hover:scale-110 transition-transform" strokeWidth={1.5} />
           <div>
             <p className="text-4xl font-bold tracking-tight text-white drop-shadow">{weather.temp}°C</p>
             <p className="text-sm text-white/80 font-medium">{label}</p>
@@ -116,6 +127,6 @@ export default function WeatherWidget() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
