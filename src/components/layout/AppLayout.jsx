@@ -18,7 +18,7 @@ export default function AppLayout() {
           src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/28c02e431_hf_20260618_020723_d020fbd3-2253-491d-98f6-4484819223f3.png"
           alt=""
           className="absolute inset-0 w-full h-full object-cover scale-105"
-          style={{ filter: "blur(14px) grayscale(1) brightness(1.1)" }}
+          style={{ filter: "blur(6px) grayscale(1) brightness(1.1)" }}
         />
         <div
           className="absolute inset-0"
