@@ -1,4 +1,5 @@
 import GlassCard from "./GlassCard";
+import HoverSection from "./HoverSection";
 import { cn } from "@/lib/utils";
 
 export default function MetricCard({ label, value, change, changeType = "up", icon: Icon, className }) {
@@ -18,9 +19,9 @@ export default function MetricCard({ label, value, change, changeType = "up", ic
           )}
         </div>
         {Icon && (
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-robur-charcoal/5 group-hover:bg-robur-yellow/10 group-hover:scale-110 transition-all">
+          <HoverSection className="flex h-10 w-10 items-center justify-center bg-robur-charcoal/5 group-hover:scale-110 transition-transform">
             <Icon className="h-5 w-5 text-robur-steel group-hover:text-robur-yellow transition-colors" strokeWidth={1.5} />
-          </div>
+          </HoverSection>
         )}
       </div>
     </GlassCard>

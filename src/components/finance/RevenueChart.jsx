@@ -1,4 +1,5 @@
 import GlassCard from "@/components/ui/GlassCard";
+import HoverSection from "@/components/ui/HoverSection";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 const data = [
@@ -28,18 +29,18 @@ export default function RevenueChart() {
   return (
     <GlassCard level={2} className="p-5">
       <div className="flex items-center justify-between mb-6">
-        <div>
+        <HoverSection className="px-2 py-1">
           <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Revenue & Margin</h3>
           <p className="text-2xl font-bold text-robur-charcoal mt-1 group-hover:translate-x-0.5 transition-transform">$1.99M <span className="text-sm font-medium text-robur-steel">YTD</span></p>
-        </div>
-        <div className="flex items-center gap-4">
+        </HoverSection>
+        <HoverSection className="flex items-center gap-4 px-3 py-1.5">
           <span className="flex items-center gap-1.5 text-[10px] font-medium text-robur-steel">
             <span className="h-2 w-2 rounded-full bg-robur-yellow shadow-[0_0_8px_rgba(255,196,0,0.6)] group-hover:shadow-[0_0_12px_rgba(255,196,0,0.9)] transition-shadow" /> Revenue
           </span>
           <span className="flex items-center gap-1.5 text-[10px] font-medium text-robur-steel">
             <span className="h-2 w-2 rounded-full bg-robur-charcoal" /> Margin
           </span>
-        </div>
+        </HoverSection>
       </div>
       <ResponsiveContainer width="100%" height={220}>
         <AreaChart data={data} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
