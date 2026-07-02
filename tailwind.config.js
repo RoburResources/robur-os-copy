@@ -110,6 +110,7 @@ module.exports = {
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'float': 'float 3s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
+        'logo-pulse': 'logo-pulse 1.8s ease-in-out infinite',
   		}
   	}
   },
