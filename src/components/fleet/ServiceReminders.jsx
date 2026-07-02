@@ -25,7 +25,7 @@ export default function ServiceReminders({ vehicle }) {
             </div>
             <span className={cn(
               "rounded-md px-2 py-0.5 text-[9px] font-bold",
-              r.flag === "DUE SOON" ? "bg-amber-50 text-amber-600" : "bg-robur-charcoal/5 text-robur-steel"
+              r.flag === "DUE SOON" ? "bg-robur-yellow/10 text-robur-yellow" : "bg-robur-charcoal/5 text-robur-steel"
             )}>
               {r.flag}
             </span>

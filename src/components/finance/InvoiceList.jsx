@@ -11,7 +11,7 @@ const invoices = [
 ];
 
 const typeColors = {
-  Paid: "bg-emerald-50 text-emerald-600",
+  Paid: "bg-robur-yellow/10 text-robur-yellow",
   Overdue: "bg-red-50 text-red-500",
   Pending: "bg-robur-charcoal/5 text-robur-steel",
 };

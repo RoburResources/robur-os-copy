@@ -58,7 +58,7 @@ export default function DMTWorkflow() {
                       "rounded-md px-1.5 py-0.5 text-[9px] font-semibold",
                       m.stage < 2 ? "bg-robur-charcoal/5 text-robur-steel"
                       : m.stage < 4 ? "bg-robur-yellow/20 text-robur-charcoal"
-                      : "bg-emerald-50 text-emerald-600"
+                      : "bg-robur-yellow/10 text-robur-yellow"
                     )}>
                       {flowSteps[m.stage]}
                     </span>
@@ -118,14 +118,14 @@ export default function DMTWorkflow() {
             {selected.stage < flowSteps.length - 1 && (
               <button
                 onClick={advance}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-robur-charcoal py-3 text-xs font-semibold text-white hover:bg-robur-charcoal/90 transition-colors"
+                className="w-full flex items-center justify-center gap-2 rounded-xl bg-robur-yellow py-3 text-xs font-semibold text-robur-charcoal hover:bg-robur-yellow/90 transition-colors"
               >
                 Advance to {flowSteps[selected.stage + 1]}
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
               </button>
             )}
             {selected.stage >= flowSteps.length - 1 && (
-              <div className="flex items-center justify-center gap-2 rounded-xl bg-emerald-50 py-3 text-xs font-semibold text-emerald-600">
+              <div className="flex items-center justify-center gap-2 rounded-xl bg-robur-yellow/10 py-3 text-xs font-semibold text-robur-yellow">
                 <CheckCircle className="h-4 w-4" /> Workflow Complete
               </div>
             )}

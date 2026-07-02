@@ -32,7 +32,7 @@ export default function DispatchStepper({ job, onAdvance }) {
                 className={cn(
                   "relative z-10 flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold transition-all",
                   isComplete
-                    ? "bg-emerald-400 text-white"
+                    ? "bg-robur-yellow text-robur-charcoal shadow-[0_0_8px_rgba(255,196,0,0.4)]"
                     : isCurrent
                     ? "bg-robur-yellow text-robur-charcoal ring-4 ring-robur-yellow/20"
                     : "bg-robur-charcoal/5 text-robur-steel"
@@ -71,7 +71,7 @@ export default function DispatchStepper({ job, onAdvance }) {
       {job?.status !== "completed" && (
         <button
           onClick={() => onAdvance(job)}
-          className="w-full flex items-center justify-center gap-2 rounded-xl bg-robur-charcoal py-2.5 text-xs font-semibold text-white hover:bg-robur-charcoal/90 transition-colors"
+          className="w-full flex items-center justify-center gap-2 rounded-xl bg-robur-yellow py-2.5 text-xs font-semibold text-robur-charcoal hover:bg-robur-yellow/90 transition-colors"
         >
           <Send className="h-3.5 w-3.5" strokeWidth={2} />
           Dispatch Job

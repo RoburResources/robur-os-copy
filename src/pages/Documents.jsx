@@ -35,9 +35,9 @@ const extractedData = [
 ];
 
 const generatedDocs = [
-  { name: "DMT Driver Movement Ticket", code: "DMT", color: "bg-blue-50 text-blue-600" },
-  { name: "MGT Movement Goods Ticket", code: "MGT", color: "bg-purple-50 text-purple-600" },
-  { name: "Data Summary Sheet", code: "DSS", color: "bg-emerald-50 text-emerald-600" },
+  { name: "DMT Driver Movement Ticket", code: "DMT", color: "bg-robur-charcoal/5 text-robur-charcoal" },
+  { name: "MGT Movement Goods Ticket", code: "MGT", color: "bg-robur-charcoal/5 text-robur-charcoal" },
+  { name: "Data Summary Sheet", code: "DSS", color: "bg-robur-yellow/10 text-robur-yellow" },
 ];
 
 const summaryPackTypes = ["DMT", "MGT", "DSS", "Exception Report"];
@@ -94,9 +94,9 @@ export default function Documents() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-1.5 rounded-md bg-emerald-50 px-2 py-1">
-              <Check className="h-3 w-3 text-emerald-500" strokeWidth={3} />
-              <span className="text-[10px] font-semibold text-emerald-600">Validated</span>
+            <div className="flex items-center gap-1.5 rounded-md bg-robur-yellow/10 px-2 py-1">
+              <Check className="h-3 w-3 text-robur-yellow" strokeWidth={3} />
+              <span className="text-[10px] font-semibold text-robur-yellow">Validated</span>
             </div>
           </StepCard>
         </motion.div>
@@ -119,8 +119,8 @@ export default function Documents() {
                     className={cn(
                       "w-full rounded-md py-1 text-[9px] font-semibold transition-colors",
                       generated[i]
-                        ? "bg-emerald-100 text-emerald-600 cursor-default"
-                        : "bg-robur-charcoal text-white hover:bg-robur-charcoal/90"
+                        ? "bg-robur-yellow/20 text-robur-yellow cursor-default"
+                        : "bg-robur-yellow text-robur-charcoal hover:bg-robur-yellow/90"
                     )}
                   >
                     {generated[i] ? "✓ Generated" : "Generate"}
@@ -139,7 +139,7 @@ export default function Documents() {
                 <div key={t} className="flex items-center gap-2 rounded-md bg-robur-charcoal/[0.03] px-2 py-1.5">
                   <FileCheck className="h-3 w-3 text-robur-steel/50" strokeWidth={1.5} />
                   <span className="text-[10px] font-medium text-robur-charcoal">{t}</span>
-                  <Check className="h-3 w-3 text-emerald-500 ml-auto" strokeWidth={2.5} />
+                  <Check className="h-3 w-3 text-robur-yellow ml-auto" strokeWidth={2.5} />
                 </div>
               ))}
             </div>
@@ -148,7 +148,7 @@ export default function Documents() {
               disabled={packSent}
               className={cn(
                 "w-full flex items-center justify-center gap-1.5 rounded-lg py-2 text-[10px] font-semibold transition-colors",
-                packSent ? "bg-emerald-100 text-emerald-600" : "bg-robur-yellow text-robur-charcoal hover:bg-robur-yellow/90"
+                packSent ? "bg-robur-yellow/20 text-robur-yellow" : "bg-robur-yellow text-robur-charcoal hover:bg-robur-yellow/90"
               )}
             >
               {packSent ? <><Check className="h-3 w-3" strokeWidth={2.5} /> Pack Sent</> : <><Send className="h-3 w-3" strokeWidth={2} /> Generate & Send</>}
@@ -169,9 +169,9 @@ export default function Documents() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center justify-center gap-1.5 rounded-md bg-emerald-50 py-1.5">
-              <Check className="h-3.5 w-3.5 text-emerald-500" strokeWidth={3} />
-              <span className="text-[10px] font-bold text-emerald-600">Completed</span>
+            <div className="flex items-center justify-center gap-1.5 rounded-md bg-robur-yellow/10 py-1.5">
+              <Check className="h-3.5 w-3.5 text-robur-yellow" strokeWidth={3} />
+              <span className="text-[10px] font-bold text-robur-yellow">Completed</span>
             </div>
           </StepCard>
         </motion.div>
@@ -185,7 +185,7 @@ export default function Documents() {
             <ChevronRight className="h-4 w-4 text-robur-light" />
           </div>
         ))}
-        <div className="h-2 w-2 rounded-full bg-emerald-400" />
+        <div className="h-2 w-2 rounded-full bg-robur-yellow" />
       </div>
 
       {/* Recent Dockets */}
@@ -221,7 +221,7 @@ export default function Documents() {
                     <td className="px-3 py-2.5 text-xs text-robur-steel">{d.material}</td>
                     <td className="px-3 py-2.5 text-xs font-semibold text-robur-charcoal">{d.net}</td>
                     <td className="px-3 py-2.5">
-                      <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-600">
+                      <span className="inline-flex items-center gap-1 rounded-md bg-robur-yellow/10 px-2 py-0.5 text-[10px] font-semibold text-robur-yellow">
                         <Check className="h-2.5 w-2.5" strokeWidth={3} /> {d.status}
                       </span>
                     </td>

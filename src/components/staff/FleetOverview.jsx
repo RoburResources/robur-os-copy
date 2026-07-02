@@ -18,7 +18,7 @@ export default function FleetOverview() {
     <GlassCard level={2} className="p-5">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Fleet Status</h3>
-        <span className="text-xs font-medium text-emerald-500">{activeCount}/{vehicles.length} active</span>
+        <span className="text-xs font-medium text-robur-yellow">{activeCount}/{vehicles.length} active</span>
       </div>
 
       <div className="space-y-1.5">

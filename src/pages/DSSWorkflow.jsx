@@ -57,7 +57,7 @@ export default function DSSWorkflow() {
             <GlassCard level={2} className="p-4">
               <p className="text-[10px] font-medium uppercase tracking-wide text-robur-steel">{k.label}</p>
               <p className="text-2xl font-black text-robur-charcoal mt-1">{k.value}</p>
-              <p className="text-[10px] text-emerald-500 mt-1">{k.change}</p>
+              <p className="text-[10px] text-robur-yellow mt-1">{k.change}</p>
             </GlassCard>
           </motion.div>
         ))}
@@ -76,7 +76,7 @@ export default function DSSWorkflow() {
                 <div key={d.day} className="flex flex-col items-center gap-2 flex-1">
                   <div className="w-full flex items-end justify-center" style={{ height: "120px" }}>
                     <div
-                      className="w-full max-w-[36px] rounded-t-lg bg-gradient-to-t from-robur-charcoal to-robur-charcoal/70 hover:from-robur-yellow hover:to-robur-yellow/70 transition-colors"
+                      className="w-full max-w-[36px] rounded-t-lg bg-gradient-to-t from-robur-yellow to-robur-yellow/70 transition-colors"
                       style={{ height: `${(d.value / maxTonnage) * 100}%` }}
                     />
                   </div>
@@ -99,7 +99,7 @@ export default function DSSWorkflow() {
               {insights.map((ins) => (
                 <div key={ins.metric} className="flex items-center gap-3 rounded-xl bg-robur-charcoal/[0.03] p-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/60">
-                    <TrendingUp className={cn("h-4 w-4", ins.trend === "up" ? "text-emerald-500" : "text-red-400")} strokeWidth={1.5} />
+                    <TrendingUp className={cn("h-4 w-4", ins.trend === "up" ? "text-robur-yellow" : "text-red-400")} strokeWidth={1.5} />
                   </div>
                   <div className="flex-1">
                     <p className="text-[10px] font-medium uppercase tracking-wide text-robur-steel">{ins.metric}</p>
@@ -126,7 +126,7 @@ export default function DSSWorkflow() {
                 className={cn(
                   "flex items-center gap-1.5 rounded-lg px-3 py-2 text-[11px] font-bold transition-colors",
                   distributed
-                    ? "bg-emerald-100 text-emerald-600 cursor-default"
+                    ? "bg-robur-yellow/20 text-robur-yellow cursor-default"
                     : "bg-robur-yellow text-robur-charcoal hover:bg-robur-yellow/90"
                 )}
               >
@@ -144,7 +144,7 @@ export default function DSSWorkflow() {
                     <p className="text-[10px] text-robur-steel">{r.date}</p>
                   </div>
                   {r.status === "distributed" ? (
-                    <span className="rounded-md bg-emerald-50 px-2 py-0.5 text-[9px] font-semibold text-emerald-600">Sent</span>
+                    <span className="rounded-md bg-robur-yellow/10 px-2 py-0.5 text-[9px] font-semibold text-robur-yellow">Sent</span>
                   ) : (
                     <button className="flex items-center gap-1 rounded-md bg-robur-charcoal/5 px-2 py-1 text-[9px] font-semibold text-robur-steel hover:bg-robur-charcoal/10 transition-colors">
                       <Download className="h-3 w-3" strokeWidth={2} /> PDF

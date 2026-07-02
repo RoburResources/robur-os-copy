@@ -14,7 +14,7 @@ export default function WorkflowFlow({ steps, currentStep = 0 }) {
               <div className="flex flex-col items-center gap-1.5">
                 <div className={cn(
                   "flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold transition-all",
-                  isComplete ? "bg-emerald-400 text-white"
+                  isComplete ? "bg-robur-yellow text-robur-charcoal shadow-[0_0_8px_rgba(255,196,0,0.4)]"
                   : isCurrent ? "bg-robur-yellow text-robur-charcoal ring-4 ring-robur-yellow/20"
                   : "bg-robur-charcoal/5 text-robur-steel"
                 )}>

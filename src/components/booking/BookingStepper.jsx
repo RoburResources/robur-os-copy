@@ -18,7 +18,7 @@ export default function BookingStepper({ currentStep }) {
               className={cn(
                 "flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-semibold transition-all",
                 step.num < currentStep
-                  ? "bg-emerald-400 text-white"
+                  ? "bg-robur-yellow text-robur-charcoal"
                   : step.num === currentStep
                   ? "bg-robur-yellow text-robur-charcoal"
                   : "bg-robur-charcoal/5 text-robur-steel"
@@ -46,7 +46,7 @@ export default function BookingStepper({ currentStep }) {
               className={cn(
                 "h-px w-6 sm:w-10 mx-1",
                 step.num < currentStep
-                  ? "bg-emerald-400"
+                  ? "bg-robur-yellow"
                   : "bg-robur-charcoal/10"
               )}
             />

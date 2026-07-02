@@ -65,8 +65,8 @@ export default function AssetDetails({ vehicle }) {
           </button>
         </div>
         <div className="space-y-3">
-          <ProgressBar label="Fuel" value={vehicle.fuel_pct} icon={Fuel} color={vehicle.fuel_pct > 50 ? "bg-emerald-400" : vehicle.fuel_pct > 25 ? "bg-robur-yellow" : "bg-red-400"} />
-          <ProgressBar label="AdBlue" value={vehicle.adblue_pct} icon={Droplet} color="bg-blue-400" />
+          <ProgressBar label="Fuel" value={vehicle.fuel_pct} icon={Fuel} color={vehicle.fuel_pct > 25 ? "bg-robur-yellow" : "bg-red-400"} />
+          <ProgressBar label="AdBlue" value={vehicle.adblue_pct} icon={Droplet} color="bg-robur-steel" />
           <ProgressBar label="Utilisation" value={vehicle.utilisation_pct} icon={Activity} color="bg-robur-charcoal" />
         </div>
       </GlassCard>

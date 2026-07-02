@@ -11,7 +11,7 @@ export default function MetricCard({ label, value, change, changeType = "up", ic
           {change && (
             <span className={cn(
               "text-xs font-medium",
-              changeType === "up" ? "text-emerald-500" : "text-red-400"
+              changeType === "up" ? "text-robur-yellow" : "text-red-400"
             )}>
               {changeType === "up" ? "↑" : "↓"} {change}
             </span>

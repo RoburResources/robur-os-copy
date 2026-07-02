@@ -9,10 +9,10 @@ const alerts = [
 ];
 
 const alertConfig = {
-  warning: { icon: AlertTriangle, color: "text-robur-yellow", bg: "bg-amber-50", border: "border-robur-yellow/20" },
-  critical: { icon: AlertTriangle, color: "text-red-400", bg: "bg-red-50", border: "border-red-200" },
-  info: { icon: Info, color: "text-sky-500", bg: "bg-sky-50", border: "border-sky-200" },
-  success: { icon: CheckCircle2, color: "text-emerald-500", bg: "bg-emerald-50", border: "border-emerald-200" },
+  warning: { icon: AlertTriangle, color: "text-robur-yellow", bg: "bg-robur-yellow/10", border: "border-robur-yellow/20" },
+  critical: { icon: AlertTriangle, color: "text-red-500", bg: "bg-red-50", border: "border-red-200" },
+  info: { icon: Info, color: "text-robur-steel", bg: "bg-robur-charcoal/5", border: "border-robur-charcoal/10" },
+  success: { icon: CheckCircle2, color: "text-robur-yellow", bg: "bg-robur-yellow/10", border: "border-robur-yellow/20" },
 };
 
 export default function AlertsPanel() {
@@ -20,7 +20,7 @@ export default function AlertsPanel() {
     <GlassCard level={2} className="p-5">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Alerts</h3>
-        <span className="text-xs font-medium text-red-400">2 critical</span>
+        <span className="text-xs font-medium text-red-500">2 critical</span>
       </div>
 
       <div className="space-y-2">

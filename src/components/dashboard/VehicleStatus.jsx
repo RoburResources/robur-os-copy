@@ -28,7 +28,7 @@ export default function VehicleStatus() {
           </div>
           <p className="text-lg font-bold text-robur-charcoal">72%</p>
           <div className="mt-1.5 h-1 rounded-full bg-robur-light/40 overflow-hidden">
-            <div className="h-full w-[72%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[72%] rounded-full bg-robur-yellow" />
           </div>
         </div>
         <div className="rounded-xl bg-robur-charcoal/[0.03] p-3">

@@ -119,8 +119,8 @@ export default function Booking() {
           animate={{ opacity: 1, scale: 1 }}
         >
           <GlassCard level={3} className="p-10 text-center">
-            <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-emerald-400/15 mb-5">
-              <Check className="h-8 w-8 text-emerald-500" strokeWidth={2.5} />
+            <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-robur-yellow/15 mb-5">
+              <Check className="h-8 w-8 text-robur-yellow" strokeWidth={2.5} />
             </div>
             <h2 className="text-xl font-bold text-robur-charcoal mb-2">
               Booking Confirmed
@@ -151,7 +151,7 @@ export default function Booking() {
                 setPreferredDate("");
                 setConfirmed(false);
               }}
-              className="w-full rounded-xl bg-robur-charcoal py-3 text-sm font-semibold text-white hover:bg-robur-charcoal/90 transition-colors"
+              className="w-full rounded-xl bg-robur-yellow py-3 text-sm font-semibold text-robur-charcoal hover:bg-robur-yellow/90 transition-colors"
             >
               New Booking
             </button>

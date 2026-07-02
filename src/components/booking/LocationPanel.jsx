@@ -78,7 +78,7 @@ export default function LocationPanel({
       <button
         onClick={onContinue}
         disabled={!address}
-        className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-robur-charcoal py-3 text-sm font-semibold text-white transition-all hover:bg-robur-charcoal/90 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-robur-yellow py-3 text-sm font-semibold text-robur-charcoal transition-all hover:bg-robur-yellow/90 disabled:opacity-40 disabled:cursor-not-allowed"
       >
         {searching ? "Searching..." : "Continue"}
         <ArrowRight className="h-4 w-4" />

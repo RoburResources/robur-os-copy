@@ -31,8 +31,8 @@ const invoices = [
 ];
 
 const statusStyles = {
-  Paid: "bg-emerald-50 text-emerald-600",
-  Pending: "bg-amber-50 text-robur-yellow",
+  Paid: "bg-robur-yellow/10 text-robur-yellow",
+  Pending: "bg-robur-charcoal/5 text-robur-steel",
   Overdue: "bg-red-50 text-red-500",
 };
 

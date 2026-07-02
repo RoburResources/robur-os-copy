@@ -2,12 +2,12 @@ import GlassCard from "@/components/ui/GlassCard";
 import { Camera, AlertTriangle, CheckSquare, Phone, FileText, Navigation } from "lucide-react";
 
 const actions = [
-  { label: "Pre-Start", icon: CheckSquare, color: "text-emerald-500", bg: "bg-emerald-50" },
-  { label: "Report Issue", icon: AlertTriangle, color: "text-robur-yellow", bg: "bg-amber-50" },
-  { label: "Photo Log", icon: Camera, color: "text-robur-steel", bg: "bg-slate-50" },
-  { label: "Navigate", icon: Navigation, color: "text-sky-500", bg: "bg-sky-50" },
-  { label: "Call Depot", icon: Phone, color: "text-robur-charcoal", bg: "bg-slate-50" },
-  { label: "Docket", icon: FileText, color: "text-violet-500", bg: "bg-violet-50" },
+  { label: "Pre-Start", icon: CheckSquare, color: "text-robur-yellow", bg: "bg-robur-yellow/10" },
+  { label: "Report Issue", icon: AlertTriangle, color: "text-robur-yellow", bg: "bg-robur-yellow/10" },
+  { label: "Photo Log", icon: Camera, color: "text-robur-steel", bg: "bg-robur-charcoal/5" },
+  { label: "Navigate", icon: Navigation, color: "text-robur-steel", bg: "bg-robur-charcoal/5" },
+  { label: "Call Depot", icon: Phone, color: "text-robur-charcoal", bg: "bg-robur-charcoal/5" },
+  { label: "Docket", icon: FileText, color: "text-robur-charcoal", bg: "bg-robur-charcoal/5" },
 ];
 
 export default function QuickActions() {

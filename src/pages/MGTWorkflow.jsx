@@ -57,9 +57,9 @@ export default function MGTWorkflow() {
                     <span className="text-xs font-bold text-robur-charcoal">{a.id}</span>
                     <span className={cn(
                       "rounded-md px-1.5 py-0.5 text-[9px] font-semibold",
-                      a.stage < 2 ? "bg-amber-50 text-amber-600"
-                      : a.stage === 2 ? "bg-blue-50 text-blue-600"
-                      : "bg-emerald-50 text-emerald-600"
+                      a.stage < 2 ? "bg-robur-yellow/10 text-robur-yellow"
+                      : a.stage === 2 ? "bg-robur-charcoal/5 text-robur-steel"
+                      : "bg-robur-yellow/10 text-robur-yellow"
                     )}>
                       {flowSteps[a.stage]}
                     </span>
@@ -115,7 +115,7 @@ export default function MGTWorkflow() {
               <div className="flex gap-3">
                 <button
                   onClick={advance}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-robur-charcoal py-3 text-xs font-semibold text-white hover:bg-robur-charcoal/90 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-robur-yellow py-3 text-xs font-semibold text-robur-charcoal hover:bg-robur-yellow/90 transition-colors"
                 >
                   <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
                   Approve & Advance
@@ -126,7 +126,7 @@ export default function MGTWorkflow() {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-2 rounded-xl bg-emerald-50 py-3 text-xs font-semibold text-emerald-600">
+              <div className="flex items-center justify-center gap-2 rounded-xl bg-robur-yellow/10 py-3 text-xs font-semibold text-robur-yellow">
                 <FileCheck className="h-4 w-4" /> Archived · Workflow Complete
               </div>
             )}

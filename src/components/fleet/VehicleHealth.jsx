@@ -25,7 +25,7 @@ export default function VehicleHealth({ vehicle }) {
             <circle cx="60" cy="60" r={radius} stroke="rgba(94,103,112,0.1)" strokeWidth="8" fill="none" />
             <circle
               cx="60" cy="60" r={radius}
-              stroke={health > 80 ? "#34D399" : health > 50 ? "#FFC400" : "#EF4444"}
+              stroke={health > 50 ? "#FFC400" : "#EF4444"}
               strokeWidth="8" fill="none"
               strokeDasharray={circumference} strokeDashoffset={offset}
               strokeLinecap="round"
@@ -44,7 +44,7 @@ export default function VehicleHealth({ vehicle }) {
                 <span className="text-[10px] font-medium text-robur-steel">{c.name}</span>
                 <span className={cn(
                   "h-1.5 w-1.5 rounded-full",
-                  health > 80 ? "bg-emerald-400" : health > 50 ? "bg-robur-yellow" : "bg-red-400"
+                  health > 50 ? "bg-robur-yellow" : "bg-red-400"
                 )} />
               </div>
               <p className="text-[10px] font-semibold text-robur-charcoal mt-0.5">{c.status}</p>
