@@ -231,9 +231,9 @@ export default function ExecutiveDashboard() {
         </Droppable>
 
         {/* Vehicle left, Activity + Quick stacked right */}
-        <div className="grid grid-cols-12 gap-5 mt-5">
+        <div className="grid grid-cols-12 gap-5 mt-5 items-start">
           <div className="col-span-12 lg:col-span-5">{cards.vehicle.node}</div>
-          <div className="col-span-12 lg:col-span-7 flex flex-col gap-5">
+          <div className="col-span-12 lg:col-span-7 flex flex-col gap-5 [&>*]:flex-1">
             {cards.activity.node}
             {cards.quick.node}
           </div>
