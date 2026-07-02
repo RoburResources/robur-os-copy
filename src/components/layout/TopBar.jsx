@@ -1,4 +1,4 @@
-import { Search, Bell, ChevronDown } from "lucide-react";
+import { Search, Bell } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 
 export default function TopBar({ title, subtitle }) {
@@ -26,13 +26,7 @@ export default function TopBar({ title, subtitle }) {
           </span>
         </GlassCard>
 
-        {/* Avatar */}
-        <GlassCard level={2} className="flex items-center gap-2 px-2 py-1.5 cursor-pointer hover:bg-white/90 transition-colors">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-robur-charcoal">
-            <span className="text-xs font-semibold text-white">JD</span>
-          </div>
-          <ChevronDown className="h-3 w-3 text-robur-steel" />
-        </GlassCard>
+
       </div>
     </div>
   );
