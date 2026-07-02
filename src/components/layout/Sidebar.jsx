@@ -97,9 +97,11 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
           collapsed ? "justify-center px-2" : "px-6"
         )}
       >
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-robur-yellow">
-          <span className="text-sm font-black text-robur-charcoal">R</span>
-        </div>
+        <img
+          src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/db36bc1a0_image.png"
+          alt="Robur"
+          className="h-8 w-8 shrink-0 rounded-lg object-cover"
+        />
         {!collapsed && (
           <div>
             <p className="text-sm font-semibold text-robur-charcoal tracking-tight">Robur Resources</p>
