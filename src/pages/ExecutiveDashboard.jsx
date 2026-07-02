@@ -75,16 +75,14 @@ function DraggableCard({ id, index, size, onResize, children }) {
 }
 
 export default function ExecutiveDashboard() {
-  const [metricOrder, setMetricOrder] = useState(["revenue-m", "fleet-m", "jobs-m", "ontime-m"]);
-  const [cardOrder, setCardOrder] = useState(["revenue", "alerts", "weather", "vehicle", "activity", "quick"]);
+  const [metricOrder, setMetricOrder] = useState(["fleet-m", "ontime-m"]);
+  const [cardOrder, setCardOrder] = useState(["revenue", "alerts", "vehicle", "activity", "quick"]);
   const [cardSizes, setCardSizes] = useState({
     revenue: 8, alerts: 4, weather: 4, vehicle: 5, activity: 7, quick: 5,
   });
 
   const metrics = {
-    "revenue-m": { label: "Monthly Revenue", value: "$392K", change: "↑ 7.4% vs May", icon: DollarSign },
     "fleet-m": { label: "Fleet Utilisation", value: "72%", change: "↑ 5% vs last week", icon: Truck },
-    "jobs-m": { label: "Active Jobs", value: "18", change: "3 ahead of schedule", icon: Package },
     "ontime-m": { label: "On-Time Rate", value: "94%", change: "↑ 2pp vs May", icon: CheckCircle },
   };
 
@@ -112,7 +110,6 @@ export default function ExecutiveDashboard() {
         </GlassCard>
       ),
     },
-    weather: { span: "col-span-12 lg:col-span-4", node: <WeatherWidget /> },
     vehicle: { span: "col-span-12 lg:col-span-5", node: <VehicleStatusCard /> },
     activity: {
       span: "col-span-12 lg:col-span-7",
@@ -203,6 +200,9 @@ export default function ExecutiveDashboard() {
                   </Draggable>
                 );
               })}
+              <div className="col-span-2">
+                <WeatherWidget />
+              </div>
               {provided.placeholder}
             </div>
           )}
