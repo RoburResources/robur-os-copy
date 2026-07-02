@@ -11,16 +11,15 @@ export default function AppLayout() {
   const [sidebarHovered, setSidebarHovered] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100/50">
+    <div className="min-h-screen bg-slate-100">
       {/* Blurred background image to test glass card effect */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <img
           src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/059ef1d21_image.png"
           alt=""
           className="absolute inset-0 w-full h-full object-cover scale-110"
-          style={{ filter: "blur(40px) saturate(1.3)", opacity: 0.85 }}
+          style={{ filter: "blur(36px) saturate(1.25)" }}
         />
-        <div className="absolute inset-0 bg-white/30" />
       </div>
 
       {isMobile ? (
