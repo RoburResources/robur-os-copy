@@ -96,11 +96,20 @@
   }
 }
 
-/* Glassmorphism Levels — refined, classy aesthetic */
+/* Glassmorphism Levels — frosted by default, solidifies on hover */
 .glass-1 {
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.38);
   backdrop-filter: blur(28px) saturate(160%);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 2px rgba(34, 38, 43, 0.04),
+    0 4px 16px rgba(34, 38, 43, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-1:hover {
+  background: rgba(255, 255, 255, 0.68);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
     0 1px 2px rgba(34, 38, 43, 0.04),
@@ -109,9 +118,18 @@
 }
 
 .glass-2 {
-  background: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.42);
   backdrop-filter: blur(32px) saturate(170%);
   -webkit-backdrop-filter: blur(32px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 1px 3px rgba(34, 38, 43, 0.05),
+    0 6px 24px rgba(34, 38, 43, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-2:hover {
+  background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
     0 1px 3px rgba(34, 38, 43, 0.05),
@@ -120,9 +138,18 @@
 }
 
 .glass-3 {
-  background: rgba(255, 255, 255, 0.84);
+  background: rgba(255, 255, 255, 0.48);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 2px 6px rgba(34, 38, 43, 0.06),
+    0 10px 40px rgba(34, 38, 43, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.40);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-3:hover {
+  background: rgba(255, 255, 255, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow:
     0 2px 6px rgba(34, 38, 43, 0.06),
@@ -131,9 +158,18 @@
 }
 
 .glass-4 {
-  background: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.52);
   backdrop-filter: blur(48px) saturate(190%);
   -webkit-backdrop-filter: blur(48px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 4px 12px rgba(34, 38, 43, 0.08),
+    0 20px 60px rgba(34, 38, 43, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-4:hover {
+  background: rgba(255, 255, 255, 0.90);
   border: 1px solid rgba(255, 255, 255, 0.32);
   box-shadow:
     0 4px 12px rgba(34, 38, 43, 0.08),
