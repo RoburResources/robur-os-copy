@@ -4,7 +4,7 @@ import GlassCard from "@/components/ui/GlassCard";
 import RevenueChart from "@/components/finance/RevenueChart";
 import VehicleStatusCard from "@/components/fleet/VehicleStatusCard";
 import { motion } from "framer-motion";
-import { DollarSign, Truck, Package, CheckCircle, ArrowRight, TrendingUp, AlertTriangle, GripVertical } from "lucide-react";
+import { DollarSign, Truck, Package, CheckCircle, ArrowRight, TrendingUp, AlertTriangle, GripVertical, Maximize2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
@@ -32,14 +32,32 @@ function reorder(list, startIndex, endIndex) {
   return result;
 }
 
-function DraggableCard({ id, index, span, children }) {
+const CARD_SIZES = [4, 6, 8, 12];
+
+function ResizeHandle({ currentSize, onResize }) {
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        const idx = CARD_SIZES.indexOf(currentSize);
+        onResize(CARD_SIZES[(idx + 1) % CARD_SIZES.length]);
+      }}
+      className="absolute -top-2 -right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 rounded-lg p-1 shadow-md hover:bg-white"
+      title={`Resize (current: ${currentSize}/12)`}
+    >
+      <Maximize2 className="h-3.5 w-3.5 text-robur-steel" />
+    </button>
+  );
+}
+
+function DraggableCard({ id, index, size, onResize, children }) {
   return (
     <Draggable draggableId={id} index={index}>
       {(provided, snapshot) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
-          className={cn(span, "relative group", snapshot.isDragging && "z-50")}
+          className={cn(`col-span-12 lg:col-span-${size}`, "relative group", snapshot.isDragging && "z-50")}
         >
           <div
             {...provided.dragHandleProps}
@@ -47,6 +65,7 @@ function DraggableCard({ id, index, span, children }) {
           >
             <GripVertical className="h-3.5 w-3.5 text-robur-steel" />
           </div>
+          <ResizeHandle currentSize={size} onResize={onResize} />
           {children}
         </div>
       )}
@@ -57,6 +76,9 @@ function DraggableCard({ id, index, span, children }) {
 export default function ExecutiveDashboard() {
   const [metricOrder, setMetricOrder] = useState(["revenue-m", "fleet-m", "jobs-m", "ontime-m"]);
   const [cardOrder, setCardOrder] = useState(["revenue", "alerts", "vehicle", "activity", "quick"]);
+  const [cardSizes, setCardSizes] = useState({
+    revenue: 8, alerts: 4, vehicle: 5, activity: 7, quick: 5,
+  });
 
   const metrics = {
     "revenue-m": { label: "Monthly Revenue", value: "$392K", change: "↑ 7.4% vs May", icon: DollarSign },
@@ -138,6 +160,10 @@ export default function ExecutiveDashboard() {
     },
   };
 
+  const handleResize = (id, size) => {
+    setCardSizes((prev) => ({ ...prev, [id]: size }));
+  };
+
   const onDragEnd = (result) => {
     if (!result.destination || result.destination.index === result.source.index) return;
     if (result.type === "metrics") {
@@ -185,11 +211,20 @@ export default function ExecutiveDashboard() {
         <Droppable droppableId="cards" type="cards">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps} className="grid grid-cols-12 gap-5">
-              {cardOrder.map((id, index) => (
-                <DraggableCard key={id} id={id} index={index} span={cards[id].span}>
-                  {cards[id].node}
-                </DraggableCard>
-              ))}
+              {cardOrder.map((id, index) => {
+                const size = cardSizes[id];
+                return (
+                  <DraggableCard
+                    key={id}
+                    id={id}
+                    index={index}
+                    size={size}
+                    onResize={(s) => handleResize(id, s)}
+                  >
+                    {cards[id].node}
+                  </DraggableCard>
+                );
+              })}
               {provided.placeholder}
             </div>
           )}
