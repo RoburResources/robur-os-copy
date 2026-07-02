@@ -1,55 +1,93 @@
+import { useId } from "react";
 import { motion } from "framer-motion";
 
-// Cloud puff definitions — each cloud is a set of radial-gradient "puffs" that
-// blend together seamlessly via CSS (no SVG circles, no hard edges, no shadow).
-// Each puff: { x, y, size } as percentages within the cloud container.
-const CLOUD_PUFFS = [
+// Cloud blob clusters — overlapping circles that form the base cloud mass.
+// The SVG turbulence+displacement filter warps their edges into organic,
+// fluffy billows with natural diffuse falloff — no hard outlines, no shadow.
+// SVG canvas is oversized with generous padding so displacement never clips.
+const CLOUD_BLOBS = [
   // Large cumulus
   [
-    { x: 18, y: 68, s: 26 }, { x: 32, y: 55, s: 36 }, { x: 50, y: 52, s: 40 },
-    { x: 68, y: 58, s: 32 }, { x: 82, y: 70, s: 24 }, { x: 26, y: 78, s: 22 },
-    { x: 42, y: 80, s: 24 }, { x: 60, y: 80, s: 22 },
+    { cx: 50, cy: 58, r: 22 }, { cx: 75, cy: 48, r: 30 }, { cx: 105, cy: 44, r: 34 },
+    { cx: 135, cy: 46, r: 32 }, { cx: 165, cy: 52, r: 26 }, { cx: 190, cy: 60, r: 20 },
+    { cx: 65, cy: 64, r: 20 }, { cx: 90, cy: 66, r: 22 }, { cx: 120, cy: 68, r: 22 },
+    { cx: 150, cy: 66, r: 20 },
   ],
   // Medium cloud
   [
-    { x: 20, y: 62, s: 22 }, { x: 38, y: 52, s: 32 }, { x: 58, y: 48, s: 34 },
-    { x: 78, y: 54, s: 28 }, { x: 30, y: 74, s: 20 }, { x: 50, y: 76, s: 22 },
-    { x: 70, y: 74, s: 20 },
+    { cx: 48, cy: 56, r: 18 }, { cx: 72, cy: 46, r: 26 }, { cx: 100, cy: 42, r: 28 },
+    { cx: 128, cy: 46, r: 24 }, { cx: 152, cy: 54, r: 18 }, { cx: 62, cy: 62, r: 16 },
+    { cx: 88, cy: 64, r: 18 }, { cx: 114, cy: 64, r: 16 },
   ],
   // Small cloud
   [
-    { x: 18, y: 60, s: 20 }, { x: 36, y: 48, s: 28 }, { x: 56, y: 46, s: 30 },
-    { x: 74, y: 54, s: 24 }, { x: 28, y: 72, s: 18 }, { x: 50, y: 74, s: 20 },
+    { cx: 44, cy: 54, r: 16 }, { cx: 68, cy: 44, r: 22 }, { cx: 94, cy: 42, r: 24 },
+    { cx: 118, cy: 48, r: 18 }, { cx: 56, cy: 60, r: 14 }, { cx: 80, cy: 62, r: 16 },
   ],
   // Wide spread cloud
   [
-    { x: 10, y: 64, s: 22 }, { x: 26, y: 52, s: 34 }, { x: 44, y: 48, s: 40 },
-    { x: 62, y: 50, s: 38 }, { x: 80, y: 56, s: 30 }, { x: 92, y: 66, s: 22 },
-    { x: 20, y: 76, s: 20 }, { x: 38, y: 80, s: 22 }, { x: 56, y: 80, s: 22 },
-    { x: 74, y: 78, s: 20 },
+    { cx: 40, cy: 58, r: 20 }, { cx: 68, cy: 46, r: 30 }, { cx: 100, cy: 42, r: 34 },
+    { cx: 132, cy: 42, r: 32 }, { cx: 164, cy: 48, r: 28 }, { cx: 192, cy: 56, r: 22 },
+    { cx: 215, cy: 62, r: 18 }, { cx: 54, cy: 64, r: 16 }, { cx: 84, cy: 66, r: 18 },
+    { cx: 116, cy: 68, r: 18 }, { cx: 148, cy: 66, r: 16 }, { cx: 178, cy: 64, r: 14 },
   ],
 ];
 
-function RealisticCloud({ variant = 0, opacity = 0.9, dark = false }) {
-  const puffs = CLOUD_PUFFS[variant % CLOUD_PUFFS.length];
-  const color = dark ? "180,195,210" : "255,255,255";
+function RealisticCloud({ variant = 0, opacity = 0.92, dark = false, stormy = false }) {
+  const uid = useId().replace(/:/g, "");
+  const blobs = CLOUD_BLOBS[variant % CLOUD_BLOBS.length];
+  const filterId = `cloudf-${uid}`;
+  const gradId = `cloudg-${uid}`;
+  const highlightId = `cloudh-${uid}`;
 
-  // Build a multi-layer radial-gradient background — each puff is a gradient
-  // that fades to fully transparent, so overlapping puffs blend seamlessly
-  // with no visible borders or hard edges.
-  const gradients = puffs.map((p) =>
-    `radial-gradient(circle at ${p.x}% ${p.y}%, rgba(${color},${opacity}) 0%, rgba(${color},${opacity * 0.75}) ${p.s * 0.6}%, rgba(${color},0) ${p.s}%)`
-  ).join(", ");
+  // Vertical light-to-shadow gradient: bright illuminated top -> shadowed bottom
+  // Storm clouds get electric purple/blue internal illumination
+  const topColor = stormy ? "#C4B8E0" : dark ? "#B0BEC5" : "#FFFFFF";
+  const midColor = stormy ? "#7B6FA8" : dark ? "#78909C" : "#E8EDF2";
+  const bottomColor = stormy ? "#2D3540" : dark ? "#546E7A" : "#B8C5D6";
 
   return (
-    <div
-      style={{
-        width: 200,
-        height: 90,
-        backgroundImage: gradients,
-        backgroundRepeat: "no-repeat",
-      }}
-    />
+    <svg width="260" height="100" viewBox="0 0 260 100" style={{ overflow: "visible" }}>
+      <defs>
+        {/* Turbulence displacement — warps circle edges into organic fluffy
+            billows with natural diffuse falloff. No hard outlines possible.
+            Filter region generously oversized so displacement never clips. */}
+        <filter id={filterId} x="-60%" y="-60%" width="220%" height="220%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.014 0.022" numOctaves="3" seed={variant * 7 + 3} result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="32" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+          <feGaussianBlur in="displaced" stdDeviation="1.2" />
+        </filter>
+        {/* Main body gradient — light top, dark bottom for volumetric depth */}
+        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={topColor} stopOpacity={opacity} />
+          <stop offset="35%" stopColor={midColor} stopOpacity={opacity * 0.92} />
+          <stop offset="100%" stopColor={bottomColor} stopOpacity={opacity * 0.6} />
+        </linearGradient>
+        {/* Highlight gradient — bright top catch-light for billow texture */}
+        <radialGradient id={highlightId} cx="50%" cy="15%" r="55%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity={stormy ? 0.3 : 0.15} />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      {/* Cloud body — circles distorted by turbulence into organic fluffy shape */}
+      <g filter={`url(#${filterId})`}>
+        {blobs.map((b, i) => (
+          <circle key={i} cx={b.cx} cy={b.cy} r={b.r} fill={`url(#${gradId})`} />
+        ))}
+        {/* Highlight overlay on top portion */}
+        {blobs.map((b, i) => (
+          <circle key={`h-${i}`} cx={b.cx} cy={b.cy - b.r * 0.3} r={b.r * 0.7} fill={`url(#${highlightId})`} />
+        ))}
+      </g>
+      {/* Storm: internal electric glow radiating from within the cloud */}
+      {stormy && (
+        <g filter={`url(#${filterId})`} opacity="0.4">
+          {blobs.slice(2, 6).map((b, i) => (
+            <circle key={`s-${i}`} cx={b.cx} cy={b.cy} r={b.r * 0.5} fill="#B4A7D6" />
+          ))}
+        </g>
+      )}
+    </svg>
   );
 }
 
@@ -79,7 +117,7 @@ function Sun() {
   );
 }
 
-function CloudLayer({ count = 3, dark = false }) {
+function CloudLayer({ count = 3, dark = false, stormy = false }) {
   const configs = count >= 5
     ? [
         { top: "2%", scale: 1.1, duration: 50, delay: 0, variant: 0 },
@@ -104,7 +142,7 @@ function CloudLayer({ count = 3, dark = false }) {
           animate={{ left: ["-40%", "140%"] }}
           transition={{ duration: c.duration, repeat: Infinity, ease: "linear", delay: c.delay }}
         >
-          <RealisticCloud variant={c.variant} dark={dark} opacity={dark ? 0.82 : 0.92} />
+          <RealisticCloud variant={c.variant} dark={dark} stormy={stormy} opacity={dark ? 0.85 : 0.92} />
         </motion.div>
       ))}
     </div>
@@ -205,7 +243,7 @@ export default function WeatherBackground({ weatherCode }) {
   if ([2].includes(code)) return (<><Sun /><CloudLayer count={3} /></>);
   if ([45, 48].includes(code)) return <Fog />;
   if ([3].includes(code)) return <CloudLayer count={5} dark />;
-  if ([95, 96, 99].includes(code)) return (<><CloudLayer count={5} dark /><Rain storm /></>);
+  if ([95, 96, 99].includes(code)) return (<><CloudLayer count={5} dark stormy /><Rain storm /></>);
   if ([71, 73, 75].includes(code)) return (<><CloudLayer count={3} dark /><Snow /></>);
   if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return (<><CloudLayer count={5} dark /><Rain /></>);
 
