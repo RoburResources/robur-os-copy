@@ -1,5 +1,6 @@
 import { MoreHorizontal, Wrench, TrendingUp, CheckCircle } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
+import HoverSection from "@/components/ui/HoverSection";
 
 const TRUCK_IMG = "https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/7f9e77d19_image.png";
 
@@ -57,7 +58,7 @@ export default function VehicleStatusCard() {
 
       {/* Status list */}
       <div className="px-5 pt-4">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+        <HoverSection className="group grid grid-cols-2 gap-x-4 gap-y-2 px-3 py-2">
           {statusItems.map((s) => (
             <div key={s.label} className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-robur-yellow shrink-0 group-hover:scale-125 transition-transform" />
@@ -65,12 +66,12 @@ export default function VehicleStatusCard() {
               <span className="text-xs text-robur-steel">— {s.value}</span>
             </div>
           ))}
-        </div>
+        </HoverSection>
       </div>
 
-      {/* Next service pill — full width */}
+      {/* Next service pill */}
       <div className="px-5 pt-3">
-        <div className="flex items-center gap-3 rounded-xl bg-robur-charcoal/[0.03] px-4 py-3 group-hover:bg-robur-charcoal/[0.06] transition-colors">
+        <HoverSection className="group flex items-center gap-3 px-4 py-3 bg-robur-charcoal/[0.03]">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-robur-yellow/10 group-hover:scale-110 transition-transform">
             <Wrench className="h-4 w-4 text-robur-yellow" strokeWidth={1.5} />
           </div>
@@ -79,16 +80,16 @@ export default function VehicleStatusCard() {
             <p className="text-xs font-bold text-robur-charcoal">in 5,200 km</p>
           </div>
           <span className="rounded-md bg-robur-yellow/10 px-2 py-0.5 text-[9px] font-bold text-robur-yellow">DUE SOON</span>
-        </div>
+        </HoverSection>
       </div>
 
       {/* Bottom data modules */}
       <div className="grid grid-cols-2 gap-3 px-5 pb-5 pt-3">
-        <div className="rounded-xl bg-robur-charcoal/[0.03] p-3 space-y-3">
+        <HoverSection className="p-3 space-y-3 bg-robur-charcoal/[0.03]">
           <ProgressBar label="Fuel" percent={62} />
           <ProgressBar label="AdBlue" percent={62} />
-        </div>
-        <div className="rounded-xl bg-robur-charcoal/[0.03] p-3 flex flex-col justify-between">
+        </HoverSection>
+        <HoverSection className="p-3 flex flex-col justify-between bg-robur-charcoal/[0.03]">
           <div>
             <p className="text-[10px] text-robur-steel mb-1">Odometer</p>
             <div className="flex items-center gap-1.5">
@@ -100,7 +101,7 @@ export default function VehicleStatusCard() {
             <CheckCircle className="h-3.5 w-3.5 text-robur-yellow" strokeWidth={2} />
             <span className="text-[10px] font-medium text-robur-charcoal">All systems normal</span>
           </div>
-        </div>
+        </HoverSection>
       </div>
     </GlassCard>
   );

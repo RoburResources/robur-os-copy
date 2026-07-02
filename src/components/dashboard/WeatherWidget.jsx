@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Sun, CloudSun, Cloud, CloudRain, CloudDrizzle, CloudLightning, CloudSnow, CloudFog, Wind, Droplets, MapPin } from "lucide-react";
 import WeatherBackground from "./WeatherBackground";
+import HoverSection from "@/components/ui/HoverSection";
 
 const PERTH_COORDS = { lat: -31.9505, lon: 115.8605 };
 
@@ -41,6 +42,8 @@ const THEME_BG = {
   snow: "linear-gradient(180deg, #22262B 0%, #2C3137 35%, #383E45 70%, #424850 100%)",
   fog: "linear-gradient(180deg, #22262B 0%, #2A2F35 35%, #33383F 70%, #3A4047 100%)",
 };
+
+const DARK_HOVER = "rgba(255,255,255,0.16)";
 
 export default function WeatherWidget() {
   const [weather, setWeather] = useState(null);
@@ -104,19 +107,19 @@ export default function WeatherWidget() {
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
       <WeatherBackground weatherCode={weather.code} />
-      <div className="relative z-10">
-        <div className="flex items-center gap-2 mb-3">
+      <div className="relative z-10 space-y-3">
+        <HoverSection className="flex items-center gap-2 px-2 py-1.5" hoverBg={DARK_HOVER}>
           <MapPin className="h-3.5 w-3.5 text-white/80" strokeWidth={2} />
           <h3 className="text-xs font-semibold uppercase tracking-wider text-white/80">Perth, WA</h3>
-        </div>
-        <div className="flex items-center gap-4">
-          <WeatherIcon className="h-16 w-16 text-white drop-shadow-lg group-hover:scale-110 transition-transform" strokeWidth={1.5} />
+        </HoverSection>
+        <HoverSection className="flex items-center gap-4 px-2 py-1.5" hoverBg={DARK_HOVER}>
+          <WeatherIcon className="h-16 w-16 text-white drop-shadow-lg" strokeWidth={1.5} />
           <div>
             <p className="text-4xl font-bold tracking-tight text-white drop-shadow">{weather.temp}°C</p>
             <p className="text-sm text-white/80 font-medium">{label}</p>
           </div>
-        </div>
-        <div className="flex items-center gap-5 mt-4 pt-3 border-t border-white/20">
+        </HoverSection>
+        <HoverSection className="flex items-center gap-5 pt-3 border-t border-white/20 px-2 py-1.5" hoverBg={DARK_HOVER}>
           <div className="flex items-center gap-1.5">
             <Wind className="h-4 w-4 text-white/80" strokeWidth={2} />
             <span className="text-xs font-semibold text-white">{weather.windSpeed} km/h</span>
@@ -125,7 +128,7 @@ export default function WeatherWidget() {
             <Droplets className="h-4 w-4 text-white/80" strokeWidth={2} />
             <span className="text-xs font-semibold text-white">{weather.humidity}%</span>
           </div>
-        </div>
+        </HoverSection>
       </div>
     </motion.div>
   );
