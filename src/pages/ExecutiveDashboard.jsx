@@ -3,6 +3,7 @@ import MetricCard from "@/components/ui/MetricCard";
 import GlassCard from "@/components/ui/GlassCard";
 import RevenueChart from "@/components/finance/RevenueChart";
 import VehicleStatusCard from "@/components/fleet/VehicleStatusCard";
+import WeatherWidget from "@/components/dashboard/WeatherWidget";
 import { motion } from "framer-motion";
 import { DollarSign, Truck, Package, CheckCircle, ArrowRight, TrendingUp, AlertTriangle, GripVertical, Maximize2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -75,9 +76,9 @@ function DraggableCard({ id, index, size, onResize, children }) {
 
 export default function ExecutiveDashboard() {
   const [metricOrder, setMetricOrder] = useState(["revenue-m", "fleet-m", "jobs-m", "ontime-m"]);
-  const [cardOrder, setCardOrder] = useState(["revenue", "alerts", "vehicle", "activity", "quick"]);
+  const [cardOrder, setCardOrder] = useState(["revenue", "alerts", "weather", "vehicle", "activity", "quick"]);
   const [cardSizes, setCardSizes] = useState({
-    revenue: 8, alerts: 4, vehicle: 5, activity: 7, quick: 5,
+    revenue: 8, alerts: 4, weather: 4, vehicle: 5, activity: 7, quick: 5,
   });
 
   const metrics = {
@@ -92,16 +93,16 @@ export default function ExecutiveDashboard() {
     alerts: {
       span: "col-span-12 lg:col-span-4",
       node: (
-        <GlassCard level={2} className="p-5 h-full">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="rounded-2xl bg-robur-yellow/10 p-5 h-full border border-robur-yellow/20">
+          <div className="flex items-center gap-2 mb-4 rounded-lg bg-robur-yellow/20 px-3 py-2">
             <AlertTriangle className="h-4 w-4 text-robur-yellow" />
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Priority Alerts</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-robur-charcoal">Priority Alerts</h3>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-2">
             {alerts.map((a, i) => (
-              <div key={i} className="flex items-start gap-3">
+              <div key={i} className="flex items-start gap-3 rounded-lg bg-robur-yellow/[0.06] px-3 py-2">
                 <div className={cn("mt-1 h-2 w-2 rounded-full shrink-0",
-                  a.severity === "critical" ? "bg-red-400" : a.severity === "warning" ? "bg-robur-yellow" : "bg-blue-400"
+                  a.severity === "critical" ? "bg-red-500" : a.severity === "warning" ? "bg-robur-yellow" : "bg-emerald-500"
                 )} />
                 <div className="flex-1">
                   <p className="text-xs font-medium text-robur-charcoal">{a.message}</p>
@@ -110,9 +111,10 @@ export default function ExecutiveDashboard() {
               </div>
             ))}
           </div>
-        </GlassCard>
+        </div>
       ),
     },
+    weather: { span: "col-span-12 lg:col-span-4", node: <WeatherWidget /> },
     vehicle: { span: "col-span-12 lg:col-span-5", node: <VehicleStatusCard /> },
     activity: {
       span: "col-span-12 lg:col-span-7",

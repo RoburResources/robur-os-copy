@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { MoreHorizontal, Wrench, TrendingUp, CheckCircle, Move, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 
-const TRUCK_IMG = "https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/1503300fd_image.png";
+const TRUCK_IMG = "https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/15890aad2_image.png";
 
 const statusItems = [
   { label: "Engine", value: "Good" },
@@ -48,9 +48,9 @@ function EditableImage() {
   const reset = () => { setPos({ x: 0, y: 0 }); setZoom(1); };
 
   return (
-    <div className="relative mx-5 mt-4 rounded-xl overflow-hidden group/img bg-[#F0EBE7]">
+    <div className="relative mx-5 mt-4 overflow-hidden group/img">
       <div
-        className="relative h-44 cursor-grab active:cursor-grabbing select-none"
+        className="relative h-52 cursor-grab active:cursor-grabbing select-none"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -60,10 +60,12 @@ function EditableImage() {
           src={TRUCK_IMG}
           alt="Truck 03"
           draggable={false}
-          className="absolute inset-0 h-full w-full object-contain p-3 pointer-events-none"
+          className="absolute inset-0 h-full w-full object-contain p-4 pointer-events-none"
           style={{
             transform: `translate(${pos.x}px, ${pos.y}px) scale(${zoom})`,
             transition: dragging ? "none" : "transform 0.1s ease-out",
+            maskImage: 'radial-gradient(ellipse 82% 95% at 50% 45%, black 50%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 82% 95% at 50% 45%, black 50%, transparent 100%)',
           }}
         />
       </div>
