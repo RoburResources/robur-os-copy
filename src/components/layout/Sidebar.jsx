@@ -100,7 +100,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
         <img
           src="https://media.base44.com/images/public/6a434fcdf106195f32f0ac41/db36bc1a0_image.png"
           alt="Robur"
-          className="h-8 w-8 shrink-0 rounded-lg object-cover"
+          className="h-11 w-11 shrink-0 rounded-lg object-cover"
         />
         {!collapsed && (
           <div>
