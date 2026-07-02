@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
 import BottomTabs from "./BottomTabs";
 import MobileHeader from "./MobileHeader";
@@ -7,6 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function AppLayout() {
   const isMobile = useIsMobile();
+  const [sidebarHovered, setSidebarHovered] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100/50">
@@ -35,8 +37,16 @@ export default function AppLayout() {
         </>
       ) : (
         <>
-          <Sidebar />
-          <main className="ml-64 min-h-screen p-8">
+          <Sidebar
+            hovered={sidebarHovered}
+            onHoverChange={setSidebarHovered}
+          />
+          <main
+            className={cn(
+              "min-h-screen p-8 transition-all duration-300",
+              sidebarHovered ? "ml-[280px]" : "ml-[96px]"
+            )}
+          >
             <Outlet />
           </main>
         </>
