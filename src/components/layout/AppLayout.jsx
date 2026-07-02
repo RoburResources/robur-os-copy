@@ -43,8 +43,8 @@ export default function AppLayout() {
           />
           <main
             className={cn(
-              "min-h-screen p-8 transition-all duration-300",
-              sidebarHovered ? "ml-[280px]" : "ml-[96px]"
+              "min-h-screen pl-2.5 pr-8 py-8 transition-all duration-300",
+              sidebarHovered ? "ml-[272px]" : "ml-[88px]"
             )}
           >
             <Outlet />
