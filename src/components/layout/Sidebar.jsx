@@ -135,7 +135,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
                         : "text-robur-steel hover:bg-robur-charcoal/5 hover:text-robur-charcoal"
                     )}
                   >
-                    <item.icon className="h-4 w-4 shrink-0" strokeWidth={isActive ? 2 : 1.5} />
+                    <item.icon className="h-5 w-5 shrink-0" strokeWidth={isActive ? 2 : 1.5} />
                     {!collapsed && <span>{item.label}</span>}
                     {!collapsed && isActive && (
                       <div className="ml-auto h-1.5 w-1.5 rounded-full bg-robur-yellow" />
@@ -159,7 +159,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
           )}
         >
           <div className="relative shrink-0">
-            <Bell className="h-4 w-4" strokeWidth={1.5} />
+            <Bell className="h-5 w-5" strokeWidth={1.5} />
             <span className="absolute -top-1.5 -right-1.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-robur-yellow text-[8px] font-bold text-robur-charcoal">
               3
             </span>
@@ -179,7 +179,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
             collapsed ? "justify-center px-2" : "gap-3 px-3"
           )}
         >
-          <Settings className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+          <Settings className="h-5 w-5 shrink-0" strokeWidth={1.5} />
           {!collapsed && <span>Settings</span>}
         </Link>
         <AlertDialog>
@@ -191,7 +191,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
                 collapsed ? "justify-center px-2" : "gap-3 px-3"
               )}
             >
-              <Trash2 className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+              <Trash2 className="h-5 w-5 shrink-0" strokeWidth={1.5} />
               {!collapsed && <span>Delete Account</span>}
             </button>
           </AlertDialogTrigger>
@@ -223,7 +223,7 @@ export default function Sidebar({ hovered = false, onHoverChange }) {
             collapsed ? "justify-center px-2" : "gap-3 px-3"
           )}
         >
-          <LogOut className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+          <LogOut className="h-5 w-5 shrink-0" strokeWidth={1.5} />
           {!collapsed && <span>Sign Out</span>}
         </button>
       </div>
