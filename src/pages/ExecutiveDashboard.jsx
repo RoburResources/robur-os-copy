@@ -5,7 +5,12 @@ import HoverSection from "@/components/ui/HoverSection";
 import RevenueChart from "@/components/finance/RevenueChart";
 import VehicleStatusCard from "@/components/fleet/VehicleStatusCard";
 import WeatherWidget from "@/components/dashboard/WeatherWidget";
-import { motion } from "framer-motion";
+import PerspectiveSwitcher from "@/components/dashboard/PerspectiveSwitcher";
+import StaffDashboard from "@/pages/StaffDashboard";
+import ClientPortal from "@/pages/ClientPortal";
+import Dashboard from "@/pages/Dashboard";
+import { motion, AnimatePresence } from "framer-motion";
+
 import { DollarSign, Truck, Package, CheckCircle, ArrowRight, TrendingUp, AlertTriangle, GripVertical, Maximize2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -75,7 +80,7 @@ function DraggableCard({ id, index, size, onResize, children }) {
   );
 }
 
-export default function ExecutiveDashboard() {
+function ExecutiveContent() {
   const [metricOrder, setMetricOrder] = useState(["fleet-m", "ontime-m"]);
   const [cardOrder, setCardOrder] = useState(["revenue", "alerts"]);
   const [cardSizes, setCardSizes] = useState({
@@ -175,7 +180,7 @@ export default function ExecutiveDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <TopBar title="Executive Dashboard" subtitle="Strategic overview · June 2026" />
+      <TopBar title="Executive Dashboard" subtitle="Strategic overview · July 2026" />
 
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="metrics" type="metrics" direction="horizontal">
@@ -242,6 +247,36 @@ export default function ExecutiveDashboard() {
           </div>
         </div>
       </DragDropContext>
+    </div>
+  );
+}
+
+export default function ExecutiveDashboard() {
+  const [perspective, setPerspective] = useState("executive");
+
+  return (
+    <div className="max-w-7xl mx-auto">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-robur-steel">Viewing as</h2>
+          <PerspectiveSwitcher value={perspective} onChange={setPerspective} />
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={perspective}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.2 }}
+        >
+          {perspective === "executive" && <ExecutiveContent />}
+          {perspective === "staff" && <StaffDashboard />}
+          {perspective === "client" && <ClientPortal />}
+          {perspective === "driver" && <Dashboard />}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
